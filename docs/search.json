@@ -11,6 +11,13 @@
     "href": "index.html",
     "title": "malariaverse",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\nT1\n\n1 + 1\n\n[1] 2"
+    "text": "Umbrella - fitting seasonality parameters from rainfall data\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nForesite - Country and subnational site information\n \n\n\n\n\n\n\n\n\nsite - convert site files to malariasimulation parameters\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNetz - Managing net metrics and distributions\n \n\n\n\n\n\n\n\n\nCali - calibrating model transmission\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nom - Intervention stratification optimisation with complex budgets\n \n\n\n\n\n\n\n\n\nscene - future scenario builder\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npostie - Post-processing of malariasimulation outputs"
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
+    "section": "",
+    "text": "Workshop:"
   }
 ]

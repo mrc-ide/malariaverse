@@ -1,13 +1,150 @@
 ---
 title: "malariaverse"
+engine: knitr
 ---
 
-This is a Quarto website.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 
-T1
+::: grid
+::: g-col-6
+\
+\
+\
+Umbrella - fitting seasonality parameters from rainfall data
 
-```{r}
-1 + 1
-```
+[![R build status](https://github.com/mrc-ide/umbrella/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/umbrella/actions) [![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+:::
+
+::: g-col-6
+[![](https://mrc-ide.github.io/umbrella/reference/figures/hex.png){width=50%}](https://mrc-ide.github.io/umbrella/)
+:::
+:::
+
+***
+
+::: grid
+::: g-col-6
+[![](https://mrc-ide.github.io/foresite/reference/figures/hex.png){width=50%}](https://mrc-ide.github.io/foresite/)
+:::
+
+::: g-col-6
+\
+\
+\
+Foresite - Country and subnational site information
+
+[![R build status](https://github.com/mrc-ide/foresite/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/foresite/actions) 
+[![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+:::
+:::
+
+***
+
+::: grid
+::: g-col-6
+\
+\
+\
+site - convert site files to malariasimulation parameters
+
+[![R build status](https://github.com/mrc-ide/site/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/site/actions) [![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+:::
+
+::: g-col-6
+[![](https://mrc-ide.github.io/site/reference/figures/site_hex.png){width=50%}](https://mrc-ide.github.io/site/)
+:::
+:::
+
+***
+
+::: grid
+::: g-col-6
+[![](https://mrc-ide.github.io/netz/reference/figures/hex.png){width=50%}](https://mrc-ide.github.io/netz/)
+:::
+
+::: g-col-6
+\
+\
+\
+Netz - Managing net metrics and distributions
+
+[![R build status](https://github.com/mrc-ide/netz/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/netz/actions) 
+[![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+:::
+:::
+
+***
+
+::: grid
+::: g-col-6
+\
+\
+\
+Cali - calibrating model transmission
+
+[![R build status](https://github.com/mrc-ide/cali/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/cali/actions) 
+[![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+:::
+
+::: g-col-6
+[![](https://mrc-ide.github.io/cali/reference/figures/cali_hex.png){width=50%}](https://mrc-ide.github.io/cali/)
+:::
+:::
+
+***
+
+::: grid
+::: g-col-6
+[![](https://mrc-ide.github.io/om/reference/figures/om_hex.png){width=50%}](https://mrc-ide.github.io/om/)
+:::
+
+::: g-col-6
+
+\
+\
+\
+om - Intervention stratification optimisation with complex budgets
+
+[![R build status](https://github.com/mrc-ide/om/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/om/actions) 
+[![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+:::
+:::
+
+***
+
+::: grid
+::: g-col-6
+\
+\
+\
+scene - future scenario builder
+
+[![R build status](https://github.com/mrc-ide/scene/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/scene/actions) 
+[![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+:::
+
+::: g-col-6
+[![](https://mrc-ide.github.io/scene/reference/figures/scene.png){width=50%}](https://mrc-ide.github.io/scene/)
+:::
+:::
+
+***
+
+::: grid
+::: g-col-6
+[![](https://mrc-ide.github.io/postie/reference/figures/om_hex.png){width=50%}](https://mrc-ide.github.io/postie/)
+:::
+
+::: g-col-6
+
+\
+\
+\
+postie - Post-processing of malariasimulation outputs
+
+[![R build status](https://github.com/mrc-ide/postie/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/postie/actions) 
+[![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+:::
+:::
+
+***
