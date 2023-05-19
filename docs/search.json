@@ -1,23 +1,16 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "malariaverse",
     "section": "",
-    "text": "Umbrella - fitting seasonality parameters from rainfall data\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nForesite - Country and subnational site information\n \n\n\n\n\n\n\n\n\nsite - convert site files to malariasimulation parameters\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNetz - Managing net metrics and distributions\n \n\n\n\n\n\n\n\n\nCali - calibrating model transmission\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nom - Intervention stratification optimisation with complex budgets\n \n\n\n\n\n\n\n\n\nscene - future scenario builder\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npostie - Post-processing of malariasimulation outputs"
+    "text": "The malariaverse is a constellation of R packages to support the use of malariasimulation individual-based malaria transmission model for place specific modelling, for example modelling a specific region or country.\nThe process often involves:\n\nCollecting and processing data that are specific to the place.\nUsing these data to parameterise malariasimulation.\nProcessing raw model outputs.\nOptimisation.\n\nEach package targets a specific challenge of this broader process. Current packages in the malariaverse are shown below. Clicking on the package logo will take you to the package site, where you’ll find much more detailed information about what the package does and how to use it.\n\n\n\n\n\n\nUmbrella - fitting seasonality parameters from rainfall data\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nForesite - Country and subnational site information\n \n\n\n\n\n\n\n\n\nsite - convert site files to malariasimulation parameters\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNetz - Managing net metrics and distributions\n \n\n\n\n\n\n\n\n\npeeps - population demography\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCali - calibrating model transmission\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nom - Intervention stratification optimisation with complex budgets\n \n\n\n\n\n\n\n\n\nscene - future scenario builder\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npostie - Post-processing of malariasimulation outputs"
   },
   {
     "objectID": "resources.html",
     "href": "resources.html",
     "title": "Resources",
     "section": "",
-    "text": "Workshop:"
+    "text": "A day-long introduction to the malariaverse workshop"
   }
 ]

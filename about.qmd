@@ -1,10 +1,5 @@
 ---
-title: "About"
+title: ""
 engine: knitr
 ---
 
-About this site
-
-```{r}
-1 + 1
-```
