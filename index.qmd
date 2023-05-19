@@ -3,26 +3,38 @@ title: ""
 engine: knitr
 ---
 
-
 ![](images/malariaverse.gif){fig-align="center" width="40%" height="40%"}
 
 ------------------------------------------------------------------------
 
-The malariaverse is a constellation of R packages to support the use of [malariasimulation](https://mrc-ide.github.io/malariasimulation/) individual-based 
-malaria transmission model for place specific modelling, for example modelling 
-a specific region or country.
+The malariaverse is a constellation of R packages to support the use of [malariasimulation](https://mrc-ide.github.io/malariasimulation/) individual-based malaria transmission model for place specific modelling, for example modelling a specific region or country.
 
 The process often involves:
 
-1. Collecting and processing data that are specific to the place.
-2. Using these data to parameterise [malariasimulation](https://mrc-ide.github.io/malariasimulation/).
-3. Processing raw model outputs.
-4. Optimisation.
+1.  Collecting and processing data that are specific to the place.
+2.  Using these data to parameterise [malariasimulation](https://mrc-ide.github.io/malariasimulation/).
+3.  Processing raw model outputs.
+4.  Optimisation.
 
-Each package targets a specific challenge of this broader process. Current packages
-in the malariaverse are shown below. Clicking on the package logo will take you
-to the package site, where you'll find much more detailed information about what the
-package does and how to use it.
+Each package targets a specific challenge of this broader process. Current packages in the malariaverse are shown below. Clicking on the package logo will take you to the package site, where you'll find much more detailed information about what the package does and how to use it.
+
+------------------------------------------------------------------------
+
+::: grid
+::: g-col-6
+![](https://mrc-ide.github.io/foresite/reference/figures/foresite_hex.png){width="50%"}
+:::
+
+::: g-col-6
+\
+\
+\
+Foresite - Country and subnational site information
+
+![](https://img.shields.io/badge/Access-Restricted-informational)
+[![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+:::
+:::
 
 ------------------------------------------------------------------------
 
@@ -33,45 +45,12 @@ package does and how to use it.
 \
 Umbrella - fitting seasonality parameters from rainfall data
 
-[![R build status](https://github.com/mrc-ide/umbrella/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/umbrella/actions) [![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+![](https://img.shields.io/badge/Access-Open-success)
+[![R build status](https://github.com/mrc-ide/umbrella/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/umbrella/actions) [![Project Status: Active -- The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 :::
 
 ::: g-col-6
 [![](https://mrc-ide.github.io/umbrella/reference/figures/umbrella_hex.png){width="50%"}](https://mrc-ide.github.io/umbrella/)
-:::
-:::
-
-------------------------------------------------------------------------
-
-::: grid
-::: g-col-6
-[![](https://mrc-ide.github.io/foresite/reference/figures/foresite_hex.png){width="50%"}](https://mrc-ide.github.io/foresite/)
-:::
-
-::: g-col-6
-\
-\
-\
-Foresite - Country and subnational site information
-
-[![R build status](https://github.com/mrc-ide/foresite/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/foresite/actions) [![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-:::
-:::
-
-------------------------------------------------------------------------
-
-::: grid
-::: g-col-6
-\
-\
-\
-site - convert site files to malariasimulation parameters
-
-[![R build status](https://github.com/mrc-ide/site/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/site/actions) [![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-:::
-
-::: g-col-6
-[![](https://mrc-ide.github.io/site/reference/figures/site_hex.png){width="50%"}](https://mrc-ide.github.io/site/)
 :::
 :::
 
@@ -88,9 +67,11 @@ site - convert site files to malariasimulation parameters
 \
 Netz - Managing net metrics and distributions
 
-[![R build status](https://github.com/mrc-ide/netz/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/netz/actions) [![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+![](https://img.shields.io/badge/Access-Open-success)
+[![R build status](https://github.com/mrc-ide/netz/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/netz/actions) [![Project Status: Active -- The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 :::
 :::
+
 ------------------------------------------------------------------------
 
 ::: grid
@@ -100,6 +81,7 @@ Netz - Managing net metrics and distributions
 \
 peeps - population demography
 
+![](https://img.shields.io/badge/Access-Open-success)
 [![R build status](https://github.com/mrc-ide/peeps/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/peeps/actions) [![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 :::
 
@@ -112,16 +94,71 @@ peeps - population demography
 
 ::: grid
 ::: g-col-6
+[![](https://mrc-ide.github.io/site/reference/figures/site_hex.png){width="50%"}](https://mrc-ide.github.io/site/)
+:::
+
+::: g-col-6
+\
+\
+\
+site - convert site files to malariasimulation parameters
+
+![](https://img.shields.io/badge/Access-Open-success)
+[![R build status](https://github.com/mrc-ide/site/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/site/actions) [![Project Status: Active -- The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+:::
+:::
+
+------------------------------------------------------------------------
+
+::: grid
+::: g-col-6
 \
 \
 \
 Cali - calibrating model transmission
 
-[![R build status](https://github.com/mrc-ide/cali/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/cali/actions) [![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+![](https://img.shields.io/badge/Access-Open-success)
+[![R build status](https://github.com/mrc-ide/cali/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/cali/actions) [![Project Status: Active -- The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 :::
 
 ::: g-col-6
 [![](https://mrc-ide.github.io/cali/reference/figures/cali_hex.png){width="50%"}](https://mrc-ide.github.io/cali/)
+:::
+:::
+
+------------------------------------------------------------------------
+
+::: grid
+::: g-col-6
+[![](https://mrc-ide.github.io/scene/reference/figures/scene.png){width="50%"}](https://mrc-ide.github.io/scene/)
+:::
+
+::: g-col-6
+\
+\
+\
+scene - future scenario builder
+
+![](https://img.shields.io/badge/Access-Open-success)
+[![R build status](https://github.com/mrc-ide/scene/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/scene/actions) [![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+:::
+:::
+
+------------------------------------------------------------------------
+
+::: grid
+::: g-col-6
+\
+\
+\
+postie - Post-processing of malariasimulation outputs
+
+![](https://img.shields.io/badge/Access-Open-success)
+[![R build status](https://github.com/mrc-ide/postie/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/postie/actions) [![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+:::
+
+::: g-col-6
+[![](https://mrc-ide.github.io/postie/reference/figures/postie_hex.png){width="50%"}](https://mrc-ide.github.io/postie/)
 :::
 :::
 
@@ -138,41 +175,9 @@ Cali - calibrating model transmission
 \
 om - Intervention stratification optimisation with complex budgets
 
-[![R build status](https://github.com/mrc-ide/om/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/om/actions) [![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-:::
-:::
-
-------------------------------------------------------------------------
-
-::: grid
-::: g-col-6
-\
-\
-\
-scene - future scenario builder
-
-[![R build status](https://github.com/mrc-ide/scene/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/scene/actions) [![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-:::
-
-::: g-col-6
-[![](https://mrc-ide.github.io/scene/reference/figures/scene.png){width="50%"}](https://mrc-ide.github.io/scene/)
-:::
-:::
-
-------------------------------------------------------------------------
-
-::: grid
-::: g-col-6
-[![](https://mrc-ide.github.io/postie/reference/figures/postie_hex.png){width="50%"}](https://mrc-ide.github.io/postie/)
-:::
-
-::: g-col-6
-\
-\
-\
-postie - Post-processing of malariasimulation outputs
-
-[![R build status](https://github.com/mrc-ide/postie/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/postie/actions) [![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+![](https://img.shields.io/badge/Access-Open-success)
+[![R build status](https://github.com/mrc-ide/om/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/om/actions)
+[![Project Status: Active -- The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 :::
 :::
 
