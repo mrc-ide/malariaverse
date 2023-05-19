@@ -12,7 +12,7 @@ website:
         text: More information
       - resources.qmd
   page-footer:
-    left: "This website was created with ❤️ and [Quarto](https://quarto.org/) by Pete Winskill. Some [image credits](https://rawpixel.com)"
+    left: "This website was created with ❤️ and [Quarto](https://quarto.org/) by [Pete Winskill](mailto:p.winskill@imperial.ac.uk). Some [image credits](https://rawpixel.com)"
 
 format:
   html:

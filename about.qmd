@@ -3,3 +3,16 @@ title: ""
 engine: knitr
 ---
 
+### The model
+
+For more information about the transmission model please visit the [malariasimulation homepage](https://mrc-ide.github.io/malariasimulation/).
+
+### Issues/Bugs
+
+To report an issue or a bug, or request a new feature please use the issues tab
+on the relevant package's github page.
+
+### Contributions
+
+Want to contribute? Great! Please either file a PR on the relevant package's github page
+or reach out to discuss options.

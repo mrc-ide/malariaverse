@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "malariaverse",
+    "section": "",
+    "text": "The model\nFor more information about the transmission model please visit the malariasimulation homepage.\n\n\nIssues/Bugs\nTo report an issue or a bug, or request a new feature please use the issues tab on the relevant package’s github page.\n\n\nContributions\nWant to contribute? Great! Please either file a PR on the relevant package’s github page or reach out to discuss options."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "malariaverse",
