@@ -8,6 +8,10 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: tutorial.qmd
+        text: Tutorial
+      - href: advanced_tutorial.qmd
+        text: Advanced tutorial
       - href: about.qmd
         text: More information
       - resources.qmd
