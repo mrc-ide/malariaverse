@@ -5,6 +5,7 @@ project:
 website:
   title: "malariaverse"
   navbar:
+    logo: "images/malariaverse_white.png"
     left:
       - href: index.qmd
         text: Home
@@ -25,4 +26,3 @@ format:
     toc: true
 
 editor: visual
-

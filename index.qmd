@@ -3,7 +3,7 @@ title: ""
 engine: knitr
 ---
 
-![](images/malariaverse.gif){fig-align="center" width="40%" height="40%"}
+![](images/malariaverse_wide.png){fig-align="center" width="100%" height="100%"}
 
 ------------------------------------------------------------------------
 
