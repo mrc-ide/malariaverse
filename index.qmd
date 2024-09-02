@@ -22,7 +22,7 @@ Each package targets a specific challenge of this broader process. Current packa
 
 ::: grid
 ::: g-col-6
-![](https://mrc-ide.github.io/foresite/reference/figures/foresite_hex.png){width="50%"}
+![](https://mrc-ide.github.io/foresite/reference/figures/Foresite.png){width="50%"}
 :::
 
 ::: g-col-6
@@ -48,7 +48,7 @@ Umbrella - fitting seasonality parameters from rainfall data
 :::
 
 ::: g-col-6
-[![](https://mrc-ide.github.io/umbrella/reference/figures/umbrella_hex.png){width="50%"}](https://mrc-ide.github.io/umbrella/)
+[![](https://mrc-ide.github.io/umbrella/reference/figures/Umbrella.png){width="50%"}](https://mrc-ide.github.io/umbrella/)
 :::
 :::
 
@@ -56,7 +56,7 @@ Umbrella - fitting seasonality parameters from rainfall data
 
 ::: grid
 ::: g-col-6
-[![](https://mrc-ide.github.io/netz/reference/figures/hex.png){width="50%"}](https://mrc-ide.github.io/netz/)
+[![](https://mrc-ide.github.io/netz/reference/figures/Netz.png){width="50%"}](https://mrc-ide.github.io/netz/)
 :::
 
 ::: g-col-6
@@ -82,7 +82,7 @@ peeps - population demography
 :::
 
 ::: g-col-6
-[![](https://mrc-ide.github.io/peeps/reference/figures/peeps_hex.png){width="50%"}](https://mrc-ide.github.io/peeps/)
+[![](https://mrc-ide.github.io/peeps/reference/figures/Peeps.png){width="50%"}](https://mrc-ide.github.io/peeps/)
 :::
 :::
 
@@ -90,7 +90,7 @@ peeps - population demography
 
 ::: grid
 ::: g-col-6
-[![](https://mrc-ide.github.io/site/reference/figures/site_hex.png){width="50%"}](https://mrc-ide.github.io/site/)
+[![](https://mrc-ide.github.io/site/reference/figures/Site.png){width="50%"}](https://mrc-ide.github.io/site/)
 :::
 
 ::: g-col-6
@@ -116,7 +116,7 @@ Cali - calibrating model transmission
 :::
 
 ::: g-col-6
-[![](https://mrc-ide.github.io/cali/reference/figures/cali_hex.png){width="50%"}](https://mrc-ide.github.io/cali/)
+[![](https://mrc-ide.github.io/cali/reference/figures/Cali.png){width="50%"}](https://mrc-ide.github.io/cali/)
 :::
 :::
 
@@ -124,7 +124,7 @@ Cali - calibrating model transmission
 
 ::: grid
 ::: g-col-6
-[![](https://mrc-ide.github.io/scene/reference/figures/scene.png){width="50%"}](https://mrc-ide.github.io/scene/)
+[![](https://mrc-ide.github.io/scene/reference/figures/Scene.png){width="50%"}](https://mrc-ide.github.io/scene/)
 :::
 
 ::: g-col-6
@@ -150,7 +150,7 @@ postie - Post-processing of malariasimulation outputs
 :::
 
 ::: g-col-6
-[![](https://mrc-ide.github.io/postie/reference/figures/postie_hex.png){width="50%"}](https://mrc-ide.github.io/postie/)
+[![](https://mrc-ide.github.io/postie/reference/figures/Postie.png){width="50%"}](https://mrc-ide.github.io/postie/)
 :::
 :::
 
@@ -158,7 +158,7 @@ postie - Post-processing of malariasimulation outputs
 
 ::: grid
 ::: g-col-6
-[![](https://mrc-ide.github.io/om/reference/figures/om_hex.png){width="50%"}](https://mrc-ide.github.io/om/)
+[![](https://mrc-ide.github.io/om/reference/figures/Om.png){width="50%"}](https://mrc-ide.github.io/om/)
 :::
 
 ::: g-col-6
@@ -168,6 +168,23 @@ postie - Post-processing of malariasimulation outputs
 om - Intervention stratification optimisation with complex budgets
 
 ![](https://img.shields.io/badge/Access-Open-success) [![R build status](https://github.com/mrc-ide/om/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/om/actions) [![Project Status: Active -- The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+:::
+:::
+
+------------------------------------------------------------------------
+
+::: grid
+::: g-col-6
+\
+\
+\
+Treasure - a repository for costing data
+
+![](https://img.shields.io/badge/Access-Open-success) [![R build status](https://github.com/mrc-ide/treasure/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/treasure/actions) [![Project Status: Active -- The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+:::
+
+::: g-col-6
+[![](https://mrc-ide.github.io/treasure/reference/figures/Treasure.png){width="50%"}](https://mrc-ide.github.io/treasure/)
 :::
 :::
 
