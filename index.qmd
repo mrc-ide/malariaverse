@@ -48,7 +48,7 @@ Umbrella - fitting seasonality parameters from rainfall data
 :::
 
 ::: g-col-6
-[![](https://mrc-ide.github.io/umbrella/reference/figures/Umbrella.png){width="50%"}](https://mrc-ide.github.io/umbrella/)
+[![](https://mrc-ide.github.io/umbrella/reference/figures/Umbrella.png){fig-align="right" width="50%"}](https://mrc-ide.github.io/umbrella/)
 :::
 :::
 
@@ -82,7 +82,7 @@ peeps - population demography
 :::
 
 ::: g-col-6
-[![](https://mrc-ide.github.io/peeps/reference/figures/Peeps.png){width="50%"}](https://mrc-ide.github.io/peeps/)
+[![](https://mrc-ide.github.io/peeps/reference/figures/Peeps.png){fig-align="right" width="50%"}](https://mrc-ide.github.io/peeps/)
 :::
 :::
 
@@ -116,7 +116,7 @@ Cali - calibrating model transmission
 :::
 
 ::: g-col-6
-[![](https://mrc-ide.github.io/cali/reference/figures/Cali.png){width="50%"}](https://mrc-ide.github.io/cali/)
+[![](https://mrc-ide.github.io/cali/reference/figures/Cali.png){fig-align="right" width="50%"}](https://mrc-ide.github.io/cali/)
 :::
 :::
 
@@ -150,7 +150,7 @@ postie - Post-processing of malariasimulation outputs
 :::
 
 ::: g-col-6
-[![](https://mrc-ide.github.io/postie/reference/figures/Postie.png){width="50%"}](https://mrc-ide.github.io/postie/)
+[![](https://mrc-ide.github.io/postie/reference/figures/Postie.png){fig-align="right" width="50%"}](https://mrc-ide.github.io/postie/)
 :::
 :::
 
@@ -184,7 +184,7 @@ Treasure - a repository for costing data
 :::
 
 ::: g-col-6
-[![](https://mrc-ide.github.io/treasure/reference/figures/Treasure.png){width="50%"}](https://mrc-ide.github.io/treasure/)
+[![](https://mrc-ide.github.io/treasure/reference/figures/Treasure.png){fig-align="right" width="50%"}](https://mrc-ide.github.io/treasure/)
 :::
 :::
 
