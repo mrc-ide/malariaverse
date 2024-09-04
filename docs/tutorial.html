@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -127,14 +161,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-model" id="toc-the-model" class="nav-link active" data-scroll-target="#the-model">The model</a></li>
-  <li><a href="#simple-malariasimulation-runs" id="toc-simple-malariasimulation-runs" class="nav-link" data-scroll-target="#simple-malariasimulation-runs">Simple malariasimulation runs</a></li>
-  <li><a href="#implementing-interventions-in-malarisimulation" id="toc-implementing-interventions-in-malarisimulation" class="nav-link" data-scroll-target="#implementing-interventions-in-malarisimulation">Implementing interventions in malarisimulation</a></li>
-  <li><a href="#seasonality-in-malarisimulation" id="toc-seasonality-in-malarisimulation" class="nav-link" data-scroll-target="#seasonality-in-malarisimulation">Seasonality in malarisimulation</a></li>
-  <li><a href="#mosquito-vectors-in-malarisimulation" id="toc-mosquito-vectors-in-malarisimulation" class="nav-link" data-scroll-target="#mosquito-vectors-in-malarisimulation">Mosquito vectors in malarisimulation</a></li>
-  <li><a href="#human-demography-in-malarisimulation" id="toc-human-demography-in-malarisimulation" class="nav-link" data-scroll-target="#human-demography-in-malarisimulation">Human demography in malarisimulation</a></li>
-  <li><a href="#site-files" id="toc-site-files" class="nav-link" data-scroll-target="#site-files">Site files</a></li>
-  <li><a href="#site-files-malariasimulation" id="toc-site-files-malariasimulation" class="nav-link" data-scroll-target="#site-files-malariasimulation">Site files + malariasimulation</a></li>
+  <li><a href="#set-up-and-installation" id="toc-set-up-and-installation" class="nav-link active" data-scroll-target="#set-up-and-installation">Set up and installation</a></li>
+  <li><a href="#starting-simple-running-the-malaria-model" id="toc-starting-simple-running-the-malaria-model" class="nav-link" data-scroll-target="#starting-simple-running-the-malaria-model">Starting Simple: Running the Malaria Model</a></li>
   </ul>
 </nav>
     </div>
@@ -144,38 +172,216 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="the-model" class="level3">
-<h3 class="anchored" data-anchor-id="the-model">The model</h3>
-<p>For more information about the transmission model please visit the <a href="https://mrc-ide.github.io/malariasimulation/">malariasimulation homepage</a>.</p>
+<hr>
+<p>This step-by-step guide will walk you through using <a href="https://mrc-ide.github.io/malariasimulation/"><strong>malariasimulation</strong></a> in R to model malaria transmission and interventions and how to use the <a href="https://mrc-ide.github.io/malariaverse/"><strong>malariaverse</strong></a> to apply <strong>malariasimulation</strong> to a specific context. Let’s dive right in!</p>
+<hr>
+<section id="set-up-and-installation" class="level3">
+<h3 class="anchored" data-anchor-id="set-up-and-installation">Set up and installation</h3>
+<p>Firstly you’ll need to get up and running with R and install the packages we will use.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define where to look for package installations</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="fu">c</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mrcide =</span> <span class="st">'https://mrc-ide.r-universe.dev'</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">CRAN =</span> <span class="st">'https://cloud.r-project.org'</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Install some packages</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="do">## The malaria model</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"malariasimulation"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Malaria model output processing help</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"postie"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="do">## For output wrangling</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="do">## For plotting</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("ggplot2")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"malariasimulation"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"postie"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.3.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.3.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set a seed for reproducible stochastic outputs</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
 </section>
-<section id="simple-malariasimulation-runs" class="level3">
-<h3 class="anchored" data-anchor-id="simple-malariasimulation-runs">Simple malariasimulation runs</h3>
-<p>ABC</p>
+<section id="starting-simple-running-the-malaria-model" class="level3">
+<h3 class="anchored" data-anchor-id="starting-simple-running-the-malaria-model">Starting Simple: Running the Malaria Model</h3>
+<p>To begin, we’ll run a basic <strong>malariasimulation</strong> model simulation. This initial run will be generic — meaning it’s not yet customised to represent a specific region, population or transmission setting. We’ll also skip any interventions for now, so we’re simply simulating transmission.</p>
+<section id="example-code" class="level4">
+<h4 class="anchored" data-anchor-id="example-code">📝 Example Code:</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the default parameters</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">get_parameters</span>()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a simple malariasimulation for 5 years</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">run_simulation</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">timesteps =</span> <span class="dv">365</span> <span class="sc">*</span> <span class="dv">5</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">parameters =</span> parameters</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can take a look at the raw simulation output</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,825
+Columns: 30
+$ timestep              &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1…
+$ n_infections          &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ infectivity           &lt;dbl&gt; 0.031406, 0.031406, 0.031406, 0.030788, 0.030788…
+$ EIR_gamb              &lt;dbl&gt; 0.000000, 0.000000, 0.000000, 0.000000, 0.000000…
+$ FOIM_gamb             &lt;dbl&gt; 0.01308150, 0.01308150, 0.01308150, 0.01308150, …
+$ mu_gamb               &lt;dbl&gt; 0.132, 0.132, 0.132, 0.132, 0.132, 0.132, 0.132,…
+$ n_bitten              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ S_count               &lt;dbl&gt; 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 43, 43, …
+$ A_count               &lt;dbl&gt; 44, 44, 44, 43, 43, 43, 43, 44, 44, 44, 44, 44, …
+$ D_count               &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ U_count               &lt;dbl&gt; 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 13, 13, …
+$ Tr_count              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ ica_mean              &lt;dbl&gt; 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, …
+$ icm_mean              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ id_mean               &lt;dbl&gt; 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, …
+$ ib_mean               &lt;dbl&gt; 0.00000000, 0.00000000, 0.00000000, 0.00000000, …
+$ iva_mean              &lt;dbl&gt; 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, …
+$ ivm_mean              &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ n_detect_lm_730_3650  &lt;dbl&gt; 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, …
+$ p_detect_lm_730_3650  &lt;dbl&gt; 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, …
+$ n_detect_pcr_730_3650 &lt;dbl&gt; 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, …
+$ n_age_730_3650        &lt;dbl&gt; 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, …
+$ E_gamb_count          &lt;dbl&gt; 39147.67, 39142.56, 39133.52, 39129.46, 39127.77…
+$ L_gamb_count          &lt;dbl&gt; 1139.318, 1139.333, 1139.286, 1139.390, 1139.279…
+$ P_gamb_count          &lt;dbl&gt; 169.7520, 169.7485, 169.7476, 169.7363, 169.7432…
+$ Sm_gamb_count         &lt;dbl&gt; 987.8232, 977.2909, 968.1788, 960.2969, 953.4757…
+$ Pm_gamb_count         &lt;dbl&gt; 12.17683, 22.70920, 31.81918, 39.69884, 46.51432…
+$ Im_gamb_count         &lt;dbl&gt; 0.000000, 0.000000, 0.000000, 0.000000, 0.000000…
+$ total_M_gamb          &lt;dbl&gt; 1000.0000, 1000.0001, 999.9980, 999.9958, 999.99…
+$ natural_deaths        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …</code></pre>
+</div>
+</div>
+<p>There are a lot of outputs for each timestep (day)!</p>
+<hr>
 </section>
-<section id="implementing-interventions-in-malarisimulation" class="level3">
-<h3 class="anchored" data-anchor-id="implementing-interventions-in-malarisimulation">Implementing interventions in malarisimulation</h3>
-<p>ABC</p>
+<section id="analysing-outputs-with-postie" class="level4">
+<h4 class="anchored" data-anchor-id="analysing-outputs-with-postie">Analysing Outputs with <code>postie</code></h4>
+<p>To get a sense of what’s going on in our simulation, we can use the <a href="https://mrc-ide.github.io/postie/"><strong>postie</strong></a> package to process the results, ready for visualisation. This package will help you extract and format key metrics like prevalence, severe cases, and more.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract formatted prevalence from the raw output and add a run name</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>processed_output <span class="ot">&lt;-</span> <span class="fu">get_prevalence</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> output,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">baseline_year =</span> <span class="dv">0</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">run =</span> <span class="st">"Baseline"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(processed_output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,825
+Columns: 7
+$ year               &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ month              &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ week               &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, …
+$ day                &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, …
+$ time               &lt;dbl&gt; 0.000000000, 0.002739726, 0.005479452, 0.008219178,…
+$ lm_prevalence_2_10 &lt;dbl&gt; 0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.5…
+$ run                &lt;chr&gt; "Baseline", "Baseline", "Baseline", "Baseline", "Ba…</code></pre>
+</div>
+</div>
+<p>Often, the best way to examine outputs is to plot them. Malaria prevalence indicates the “Proportion of a specified population with malaria infection at one time”. We can plot <em>Plasmodium falciparum</em> parasite prevalence in 2-10 year (<em>Pf</em>PR<sub>2-10</sub>) olds over time.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> processed_output,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> lm_prevalence_2_10, <span class="at">colour =</span> run)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="st">"#31035f"</span>, <span class="at">name =</span> <span class="st">"Run"</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Time (years)"</span>) <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">italic</span>(Pf) <span class="sc">*</span> Pr[<span class="dv">2-10</span>])) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
 </section>
-<section id="seasonality-in-malarisimulation" class="level3">
-<h3 class="anchored" data-anchor-id="seasonality-in-malarisimulation">Seasonality in malarisimulation</h3>
-<p>ABC</p>
-</section>
-<section id="mosquito-vectors-in-malarisimulation" class="level3">
-<h3 class="anchored" data-anchor-id="mosquito-vectors-in-malarisimulation">Mosquito vectors in malarisimulation</h3>
-<p>ABC</p>
-</section>
-<section id="human-demography-in-malarisimulation" class="level3">
-<h3 class="anchored" data-anchor-id="human-demography-in-malarisimulation">Human demography in malarisimulation</h3>
-<p>ABC</p>
-</section>
-<section id="site-files" class="level3">
-<h3 class="anchored" data-anchor-id="site-files">Site files</h3>
-<p>ABC</p>
-</section>
-<section id="site-files-malariasimulation" class="level3">
-<h3 class="anchored" data-anchor-id="site-files-malariasimulation">Site files + malariasimulation</h3>
+<section id="adjusting-the-intensity-transmission" class="level4">
+<h4 class="anchored" data-anchor-id="adjusting-the-intensity-transmission">Adjusting the intensity Transmission</h4>
+<p>In our model run above, we can see <em>Pf</em>PR<sub>2-10</sub> hovering around 0.5. If we want, we can adjust the level of <strong>baseline transmission</strong> - that is, transmission intensity in the absence of interventions.</p>
+<p><strong>malariasimulation</strong> has lots of helper function to make it easier to modify the parameter list. One of these <a href="https://mrc-ide.github.io/malariasimulation/reference/set_equilibrium.html"><code>set_equilibrium()</code></a> allows us to adjust the baseline Entomological Inoculation Rate (EIR). The EIR is the “number of infective bites received per person in a given unit of time”, in this case per year. Let’s see what impact chnaging the EIR in our model has</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update the parameters with a new EIR</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> parameters <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_equilibrium</span>(<span class="at">init_EIR =</span> <span class="dv">2</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a new simulation</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>output2 <span class="ot">&lt;-</span> <span class="fu">run_simulation</span>(</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">timesteps =</span> <span class="dv">365</span> <span class="sc">*</span> <span class="dv">5</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">parameters =</span> parameters</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract formatted prevalence from the raw output and add a run name</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>processed_output2 <span class="ot">&lt;-</span> <span class="fu">get_prevalence</span>(</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> output2,</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">baseline_year =</span> <span class="dv">0</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">run =</span> <span class="st">"Modified EIR"</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Combined outputs from both simulations for plotting</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  processed_output,</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  processed_output2</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> plot_data,</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> lm_prevalence_2_10, <span class="at">col =</span> run)</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#31035f"</span>, <span class="st">"#d32fbd"</span>), <span class="at">name =</span> <span class="st">"Run"</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Time (years)"</span>) <span class="sc">+</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">italic</span>(Pf) <span class="sc">*</span> Pr[<span class="dv">2-10</span>])) <span class="sc">+</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Our <code>Baseline</code> run used the default EIR of 10. For our modified run, we can see the impact of lowering the EIR to 2 - <em>Pf</em>PR<sub>2-10</sub> has fallen from around 50% to 20%.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

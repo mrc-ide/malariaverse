@@ -3,32 +3,150 @@ title: ""
 engine: knitr
 ---
 
-### The model
+------------------------------------------------------------------------
 
-For more information about the transmission model please visit the [malariasimulation homepage](https://mrc-ide.github.io/malariasimulation/).
+This step-by-step guide will walk you through using [**malariasimulation**](https://mrc-ide.github.io/malariasimulation/) in R to model malaria transmission and interventions and how to use the [**malariaverse**](https://mrc-ide.github.io/malariaverse/) to apply **malariasimulation** to a specific context. Let's dive right in!
 
-### Simple malariasimulation runs
+------------------------------------------------------------------------
 
-ABC
+### Set up and installation
 
-### Implementing interventions in malarisimulation
+Firstly you'll need to get up and running with R and install the packages we will use.
 
-ABC
+```{r, eval=FALSE}
+# Define where to look for package installations
+options(
+  repos = c(
+    mrcide = 'https://mrc-ide.r-universe.dev',
+    CRAN = 'https://cloud.r-project.org'
+  )
+)
 
-### Seasonality in malarisimulation
+# Install some packages
+## The malaria model
+install.packages("malariasimulation")
+## Malaria model output processing help
+install.packages("postie")
+## For output wrangling
+install.packages("dplyr")
+## For plotting
+#install.packages("ggplot2")
+``` 
 
-ABC
+``` {r}
+# Load packages
+library("malariasimulation")
+library("postie")
+library("dplyr")
+library("ggplot2")
 
-### Mosquito vectors in malarisimulation
+# Set a seed for reproducible stochastic outputs
+set.seed(12345)
+```
 
-ABC
+------------------------------------------------------------------------
 
-### Human demography in malarisimulation
+### Starting Simple: Running the Malaria Model
 
-ABC
+To begin, we'll run a basic **malariasimulation** model simulation. This initial run will be generic — meaning it's not yet customised to represent a specific region, population or transmission setting. We'll also skip any interventions for now, so we're simply simulating transmission.
 
-### Site files
+#### 📝 Example Code:
 
-ABC
+```{r}
+# Get the default parameters
+parameters <- get_parameters()
+# Run a simple malariasimulation for 5 years
+output <- run_simulation(
+  timesteps = 365 * 5,
+  parameters = parameters
+)
+```
 
-### Site files + malariasimulation
+We can take a look at the raw simulation output
+
+```{r}
+glimpse(output)
+```
+
+There are a lot of outputs for each timestep (day)!
+
+------------------------------------------------------------------------
+
+#### Analysing Outputs with `postie`
+
+To get a sense of what's going on in our simulation, we can use the [**postie**](https://mrc-ide.github.io/postie/) package to process the results, ready for visualisation. This package will help you extract and format key metrics like prevalence, severe cases, and more.
+
+```{r}
+# Extract formatted prevalence from the raw output and add a run name
+processed_output <- get_prevalence(
+  x = output,
+  baseline_year = 0
+) |>
+  mutate(run = "Baseline")
+glimpse(processed_output)
+```
+
+Often, the best way to examine outputs is to plot them. Malaria prevalence indicates the "Proportion of a specified population with malaria infection at one time". We can plot *Plasmodium falciparum* parasite prevalence in 2-10 year (*Pf*PR~2-10~) olds over time.
+
+```{r}
+ggplot(
+  data = processed_output,
+  aes(x = time, y = lm_prevalence_2_10, colour = run)
+) +
+  geom_line() +
+  scale_colour_manual(
+    values = "#31035f", name = "Run"
+  ) +
+  xlab("Time (years)") +
+  ylab(expression(italic(Pf) * Pr[2-10])) +
+  ylim(0, 1) +
+  theme_bw()
+```
+
+------------------------------------------------------------------------
+
+#### Adjusting the intensity Transmission
+
+In our model run above, we can see *Pf*PR~2-10~ hovering around 0.5. If we want, we can adjust the level of **baseline transmission** - that is, transmission intensity in the absence of interventions.
+
+**malariasimulation** has lots of helper function to make it easier to modify the parameter list. One of these [`set_equilibrium()`](https://mrc-ide.github.io/malariasimulation/reference/set_equilibrium.html) allows us to adjust the baseline Entomological Inoculation Rate (EIR). The EIR is the "number of infective bites received per person in a given unit of time", in this case per year. Let's see what impact chnaging the EIR in our model has
+
+```{r}
+# Update the parameters with a new EIR
+parameters <- parameters |>
+  set_equilibrium(init_EIR = 2)
+
+# Run a new simulation
+output2 <- run_simulation(
+  timesteps = 365 * 5,
+  parameters = parameters
+) 
+
+# Extract formatted prevalence from the raw output and add a run name
+processed_output2 <- get_prevalence(
+  x = output2,
+  baseline_year = 0
+) |>
+  mutate(run = "Modified EIR")
+
+# Combined outputs from both simulations for plotting
+plot_data <- bind_rows(
+  processed_output,
+  processed_output2
+)
+
+ggplot(
+  data = plot_data,
+  aes(x = time, y = lm_prevalence_2_10, col = run)
+) +
+  geom_line() +
+    scale_colour_manual(
+    values = c("#31035f", "#d32fbd"), name = "Run"
+  ) +
+  xlab("Time (years)") +
+  ylab(expression(italic(Pf) * Pr[2-10])) +
+  ylim(0, 1) +
+  theme_bw()
+```
+
+Our `Baseline` run used the default EIR of 10. For our modified run, we can see the impact of lowering the EIR to 2 - *Pf*PR~2-10~ has fallen from around 50% to 20%.

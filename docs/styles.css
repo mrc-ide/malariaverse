@@ -5,7 +5,25 @@
     font-family: "Russo One", sans-serif;
 }
 
+.toc a.active, .toc-sidebar a.active {
+    color: #FF4500; /* Your preferred color for the active TOC link */
+    font-weight: bold; /* Optional: Bold for emphasis */
+}
+
 .navbar, .navbar a, .navbar-brand {
     font-family: "Russo One", sans-serif;
     background-color: #31035f;
+}
+
+.r {
+    background-color: #F3E8FE;
+}
+
+
+a {
+    color: #d533bf; /* Universal link color */
+}
+
+a:hover {
+    color: #9d16c0; /* Universal hover color */
 }
