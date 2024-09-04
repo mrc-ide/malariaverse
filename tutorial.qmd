@@ -31,9 +31,9 @@ install.packages("postie")
 install.packages("dplyr")
 ## For plotting
 #install.packages("ggplot2")
-``` 
+```
 
-``` {r}
+```{r}
 # Load packages
 library("malariasimulation")
 library("postie")
@@ -49,8 +49,6 @@ set.seed(12345)
 ### Starting Simple: Running the Malaria Model
 
 To begin, we'll run a basic **malariasimulation** model simulation. This initial run will be generic — meaning it's not yet customised to represent a specific region, population or transmission setting. We'll also skip any interventions for now, so we're simply simulating transmission.
-
-#### 📝 Example Code:
 
 ```{r}
 # Get the default parameters

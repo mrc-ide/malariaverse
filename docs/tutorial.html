@@ -231,8 +231,6 @@ Attaching package: 'dplyr'</code></pre>
 <section id="starting-simple-running-the-malaria-model" class="level3">
 <h3 class="anchored" data-anchor-id="starting-simple-running-the-malaria-model">Starting Simple: Running the Malaria Model</h3>
 <p>To begin, we’ll run a basic <strong>malariasimulation</strong> model simulation. This initial run will be generic — meaning it’s not yet customised to represent a specific region, population or transmission setting. We’ll also skip any interventions for now, so we’re simply simulating transmission.</p>
-<section id="example-code" class="level4">
-<h4 class="anchored" data-anchor-id="example-code">📝 Example Code:</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the default parameters</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">get_parameters</span>()</span>
@@ -282,7 +280,6 @@ $ natural_deaths        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 </div>
 <p>There are a lot of outputs for each timestep (day)!</p>
 <hr>
-</section>
 <section id="analysing-outputs-with-postie" class="level4">
 <h4 class="anchored" data-anchor-id="analysing-outputs-with-postie">Analysing Outputs with <code>postie</code></h4>
 <p>To get a sense of what’s going on in our simulation, we can use the <a href="https://mrc-ide.github.io/postie/"><strong>postie</strong></a> package to process the results, ready for visualisation. This package will help you extract and format key metrics like prevalence, severe cases, and more.</p>
