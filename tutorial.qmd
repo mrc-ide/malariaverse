@@ -3,7 +3,7 @@ title: ""
 engine: knitr
 ---
 
-------------------------------------------------------------------------
+## Malariaverse Tutorial: Part 1
 
 This step-by-step guide will walk you through using [**malariasimulation**](https://mrc-ide.github.io/malariasimulation/) in R to model malaria transmission and interventions and how to use the [**malariaverse**](https://mrc-ide.github.io/malariaverse/) to apply **malariasimulation** to a specific context. Let's dive right in!
 
@@ -14,7 +14,9 @@ This step-by-step guide will walk you through using [**malariasimulation**](http
 Firstly you'll need to get up and running with R and install the packages we will use.
 
 ```{r, eval=FALSE}
-# Define where to look for package installations
+# Set the package repositories to use when installing packages
+## mrcide: for packages from the MRC IDE repository
+## CRAN: for general R packages from the official repository
 options(
   repos = c(
     mrcide = 'https://mrc-ide.r-universe.dev',
@@ -22,15 +24,15 @@ options(
   )
 )
 
-# Install some packages
-## The malaria model
+# Install packages
+## The malaria model:
 install.packages("malariasimulation")
-## Malaria model output processing help
+## For malaria model output processing:
 install.packages("postie")
-## For output wrangling
+## For output wrangling:
 install.packages("dplyr")
-## For plotting
-#install.packages("ggplot2")
+## For plotting:
+install.packages("ggplot2")
 ```
 
 ```{r}
@@ -66,7 +68,7 @@ We can take a look at the raw simulation output
 glimpse(output)
 ```
 
-There are a lot of outputs for each timestep (day)!
+There are a lot of outputs for each time step (day)!
 
 ------------------------------------------------------------------------
 
@@ -84,7 +86,7 @@ processed_output <- get_prevalence(
 glimpse(processed_output)
 ```
 
-Often, the best way to examine outputs is to plot them. Malaria prevalence indicates the "Proportion of a specified population with malaria infection at one time". We can plot *Plasmodium falciparum* parasite prevalence in 2-10 year (*Pf*PR~2-10~) olds over time.
+Often, the best way to examine outputs is to plot them. Malaria prevalence indicates the *"Proportion of a specified population with malaria infection at one time"*. We can plot *Plasmodium falciparum* parasite prevalence in 2-10 year (*Pf*PR~2-10~) olds over time.
 
 ```{r}
 ggplot(
@@ -107,7 +109,7 @@ ggplot(
 
 In our model run above, we can see *Pf*PR~2-10~ hovering around 0.5. If we want, we can adjust the level of **baseline transmission** - that is, transmission intensity in the absence of interventions.
 
-**malariasimulation** has lots of helper function to make it easier to modify the parameter list. One of these [`set_equilibrium()`](https://mrc-ide.github.io/malariasimulation/reference/set_equilibrium.html) allows us to adjust the baseline Entomological Inoculation Rate (EIR). The EIR is the "number of infective bites received per person in a given unit of time", in this case per year. Let's see what impact chnaging the EIR in our model has
+**malariasimulation** has lots of helper function to make it easier to modify the parameter list. One of these, [`set_equilibrium()`](https://mrc-ide.github.io/malariasimulation/reference/set_equilibrium.html), allows us to adjust the baseline Entomological Inoculation Rate (EIR). The EIR is the *"number of infective bites received per person in a given unit of time"*, in this case per year. Let's see what impact chnaging the EIR in our model has
 
 ```{r}
 # Update the parameters with a new EIR
@@ -138,7 +140,7 @@ ggplot(
   aes(x = time, y = lm_prevalence_2_10, col = run)
 ) +
   geom_line() +
-    scale_colour_manual(
+  scale_colour_manual(
     values = c("#31035f", "#d32fbd"), name = "Run"
   ) +
   xlab("Time (years)") +
@@ -148,3 +150,148 @@ ggplot(
 ```
 
 Our `Baseline` run used the default EIR of 10. For our modified run, we can see the impact of lowering the EIR to 2 - *Pf*PR~2-10~ has fallen from around 50% to 20%.
+
+------------------------------------------------------------------------
+
+### Taking the Next Step: Introducing Interventions
+
+After learning how to perform foundational model runs, the next step is adding interventions. Fortunately, **malariasimulation** has lots of helper functions to facilitate adding different interventions into our simulation. These functions help you to modify the parameter list to include your interventin of choice.
+
+Let's revisit our initial model run, and add in a single mass drug administration (MDA). An MDA is the *"administration of antimalarial treatment to all age groups of a defined population or every person living in a defined geographical area (except those for whom the medicine is contraindicated) at approximately the same time and often at repeated intervals"*. They aren't used that frequently in practice, but they're a good intervention to play with in the model as they have a big instant impact and are simple to specify. The helper functions we will use in the code below to implement and MDA is [`set_mda()`](https://mrc-ide.github.io/malariasimulation/reference/set_mda.html) and to specify drugs in the simulation \[`set_drugs()`\]\[https://mrc-ide.github.io/malariasimulation/reference/set_drugs.html\].
+
+```{r}
+# Get the default parameters
+parameters <- get_parameters()
+
+# Specify the drug options we can use in the simulation.
+## Here we are adding in default parameters for a commonly used drug: Artemether and Lumefantrine (AL).
+parameters <- set_drugs(
+  parameters = parameters,
+  drugs = list(AL_params)
+)
+
+# Specify one round of MDA
+## Drug 1 - indicates we use the first (and only) drug defined in the list above
+## We implement the MDA in the 3rd year (on day 365 * 3)
+## 90% of the target population will receive AL
+## The target population in those aged 6 months - 100 years
+parameters <- set_mda(
+  parameters = parameters,
+  drug = 1,
+  timesteps = 365 * 3,
+  coverages = 0.99,
+  min_ages = 0,
+  max_ages = 36500
+)
+
+# Run the model
+output <- run_simulation(
+  timesteps = 365 * 5,
+  parameters = parameters
+)
+
+# Extract formatted prevalence from the raw output and add a run name
+processed_output <- get_prevalence(
+  x = output,
+  baseline_year = 0
+) |>
+  mutate(run = "MDA")
+
+# Plot some results
+ggplot(
+  data = processed_output,
+  aes(x = time, y = lm_prevalence_2_10, colour = run)
+) +
+  geom_vline(xintercept = 3, linetype = 2, colour = "grey") +
+  geom_line() +
+  scale_colour_manual(
+    values = "#31035f", name = "Run"
+  ) +
+  xlab("Time (years)") +
+  ylab(expression(italic(Pf) * Pr[2-10])) +
+  ylim(0, 1) +
+  theme_bw()
+```
+
+Congratulations 🎉, you have successfully implemented a round of MDA, and we can see the
+impact on *Pf*PR~2-10~. There is a large drop in *Pf*PR~2-10~ as infections are cleared
+following administration of AL to a large proportion of the population. However,
+we can also see with only 1 round of MDA that malaria prevalence returns back to
+previous levels very quickly.
+
+### Sustained control: Multiple Interventions
+
+As we've seen, the impact of our MDA doesn't last long. We might want to add 
+additional interventions that help to control malaria transmission over a longer period.
+One of the most widely used and successful interventions against malaria to date are
+insecticide treated bed nets (ITNs). 
+
+We can add ITNs to MDA in our simulation by using the helper function [`set_bednets()`](https://mrc-ide.github.io/malariasimulation/reference/set_bednets.html),
+to further modify our input parameter list. ITNs are often given out in mass distributions 
+that occur every 3 years. We can replicate this style of distribution - let's
+specify a mass distribution at the start of years 2 and 5.The `set_bednets()` function
+has a number of arguments you must supply, but remember, you can always call `?set_bednets()`
+for help and information on how to use the function correctly. Adding the `?` before the
+function will show you help for any of the **malariasimulation** functions.
+
+``` {r}
+parameters <- set_bednets(
+  parameters,
+  timesteps =  c(1, 4) * 365 + 1,
+  coverages = c(0.8, 0.8),  # Each round is distributed to 50% of the population.
+  retention = 3 * 365, # Nets are kept on average 5 years
+  dn0 = matrix(c(0.533, 0.533), nrow = 2, ncol = 1), # Matrix of death probabilities for each mosquito species over time
+  rn = matrix(c(0.56, 0.56), nrow = 2, ncol = 1), # Matrix of repelling probabilities for each mosquito species over time
+  rnm = matrix(c(0.24, 0.24), nrow = 2, ncol = 1), # Matrix of minimum repelling probabilities for each mosquito species over time
+  gamman = rep(2.64 * 365, 2) # Vector of bed net half-lives for each distribution timestep
+)
+
+# Run the model
+output <- run_simulation(
+  timesteps = 365 * 5,
+  parameters = parameters
+)
+
+# Extract formatted prevalence from the raw output and add a run name
+processed_output <- get_prevalence(
+  x = output,
+  baseline_year = 0
+) |>
+  mutate(run = "MDA + Bednets")
+
+# Plot some results
+ggplot(
+  data = processed_output,
+  aes(x = time, y = lm_prevalence_2_10, colour = run)
+) +
+  geom_vline(xintercept = 3, linetype = 2, colour = "grey") +
+  geom_vline(xintercept = c(1, 4), linetype = 2, colour = "grey") +
+  geom_line() +
+  scale_colour_manual(
+    values = "#2cc3cc", name = "Run"
+  ) +
+  xlab("Time (years)") +
+  ylab(expression(italic(Pf) * Pr[2-10])) +
+  ylim(0, 1) +
+  theme_bw()
+```
+
+Excellent, we can see that in this simulation bed nets are doing a really good job of reducing
+transmission and helping to keep it low. Now that you've learnt how to run a simulation
+and add in multiple interventions you could begin to use the model to help understand and answer
+many interesting questions:
+
+* Intervention impact: How do different interventions, like bed nets or mass drug administration, affect transmission over time?
+ Optimal mixes of interventions: What combination of interventions yields the greatest reduction in malaria burden?
+* Timing of interventions: When is the best time to deploy interventions for maximum effectiveness?
+* Cost-effectiveness: Which interventions provide the greatest impact for the lowest cost in various settings?
+* Effect of coverage: How does changing the percentage of the population covered by an intervention alter transmission dynamics?
+* Long-term sustainability: What happens when interventions are scaled back or discontinued? Does malaria transmission bounce back?
+
+------------------------------------------------------------------------
+
+## Part 2 - Context Matters 🦟🌧!
+
+In the next part of this tutorial, (part 2)[URL], we'll be considering other important
+factors in additional to interventions that can impact malaria transmission. We'll be
+learning how to capture differences in seasonality, mosquitoes, human demography and more!
