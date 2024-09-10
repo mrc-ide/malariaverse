@@ -1,7 +1,0 @@
----
-title: "Resources"
-engine: knitr
----
-
-
-* A day-long introduction to the malariaverse [workshop](https://mrc-ide.github.io/mvw/)

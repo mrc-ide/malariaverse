@@ -7,6 +7,8 @@ engine: knitr
 
 For more information about the transmission model please visit the [malariasimulation homepage](https://mrc-ide.github.io/malariasimulation/).
 
+**malariasimulation** is built using the [**individual** package](https://mrc-ide.github.io/individual/).
+
 ### Issues/Bugs
 
 To report an issue or a bug, or request a new feature please use the issues tab on the relevant package's github page.
