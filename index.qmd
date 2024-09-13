@@ -18,6 +18,16 @@ The process often involves:
 
 Each package targets a specific challenge of this broader process. Current packages in the malariaverse are shown below. Clicking on the package logo will take you to the package site, where you'll find much more detailed information about what the package does and how to use it.
 
+
+------------------------------------------------------------------------
+
+:::{.text-center}
+![](https://mrc-ide.github.io/malariasimulation/reference/figures/malariasimulation.png){width="25%"}
+
+![](https://img.shields.io/badge/Access-Open-success) [![R build status](https://github.com/mrc-ide/malariasimulation/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/malariasimulation/actions) [![Project Status: Active -- The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+:::
+
+
 ------------------------------------------------------------------------
 
 ::: grid
