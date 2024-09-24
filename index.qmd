@@ -18,33 +18,14 @@ The process often involves:
 
 Each package targets a specific challenge of this broader process. Current packages in the malariaverse are shown below. Clicking on the package logo will take you to the package site, where you'll find much more detailed information about what the package does and how to use it.
 
-
 ------------------------------------------------------------------------
 
-:::{.text-center}
+::: text-center
 ![](https://mrc-ide.github.io/malariasimulation/reference/figures/malariasimulation.png){width="25%"}
 
 ![](https://img.shields.io/badge/Access-Open-success) [![R build status](https://github.com/mrc-ide/malariasimulation/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/malariasimulation/actions) [![Project Status: Active -- The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 :::
 
-
-------------------------------------------------------------------------
-
-::: grid
-::: g-col-6
-![](https://mrc-ide.github.io/foresite/reference/figures/Foresite.png){width="50%"}
-:::
-
-::: g-col-6
-\
-\
-\
-Foresite - Country and subnational site information
-
-![](https://img.shields.io/badge/Access-Restricted-informational) [![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-:::
-:::
-
 ------------------------------------------------------------------------
 
 ::: grid
@@ -52,7 +33,7 @@ Foresite - Country and subnational site information
 \
 \
 \
-Umbrella - fitting seasonality parameters from rainfall data
+umbrella - fitting seasonality parameters from rainfall data
 
 ![](https://img.shields.io/badge/Access-Open-success) [![R build status](https://github.com/mrc-ide/umbrella/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/umbrella/actions) [![Project Status: Active -- The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 :::
@@ -73,7 +54,7 @@ Umbrella - fitting seasonality parameters from rainfall data
 \
 \
 \
-Netz - Managing net metrics and distributions
+netz - managing net metrics and distributions
 
 ![](https://img.shields.io/badge/Access-Open-success) [![R build status](https://github.com/mrc-ide/netz/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/netz/actions) [![Project Status: Active -- The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 :::
@@ -107,7 +88,7 @@ peeps - population demography
 \
 \
 \
-site - convert site files to malariasimulation parameters
+site - country and sub-national site information and conversion to malariasimulation parameters
 
 ![](https://img.shields.io/badge/Access-Open-success) [![R build status](https://github.com/mrc-ide/site/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/site/actions) [![Project Status: Active -- The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 :::
@@ -120,7 +101,7 @@ site - convert site files to malariasimulation parameters
 \
 \
 \
-Cali - calibrating model transmission
+cali - calibrating model transmission
 
 ![](https://img.shields.io/badge/Access-Open-success) [![R build status](https://github.com/mrc-ide/cali/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/cali/actions) [![Project Status: Active -- The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 :::
@@ -154,7 +135,7 @@ scene - future scenario builder
 \
 \
 \
-postie - Post-processing of malariasimulation outputs
+postie - post-processing of malariasimulation outputs
 
 ![](https://img.shields.io/badge/Access-Open-success) [![R build status](https://github.com/mrc-ide/postie/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/postie/actions) [![Project Status: WIP -- Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 :::
@@ -175,7 +156,7 @@ postie - Post-processing of malariasimulation outputs
 \
 \
 \
-om - Intervention stratification optimisation with complex budgets
+om - intervention stratification optimisation with complex budgets
 
 ![](https://img.shields.io/badge/Access-Open-success) [![R build status](https://github.com/mrc-ide/om/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/om/actions) [![Project Status: Active -- The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 :::
@@ -188,7 +169,7 @@ om - Intervention stratification optimisation with complex budgets
 \
 \
 \
-Treasure - a repository for costing data
+treasure - a repository for costing data
 
 ![](https://img.shields.io/badge/Access-Open-success) [![R build status](https://github.com/mrc-ide/treasure/workflows/R-CMD-check/badge.svg)](https://github.com/mrc-ide/treasure/actions) [![Project Status: Active -- The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 :::

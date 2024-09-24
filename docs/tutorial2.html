@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -107,10 +141,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">More information</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./resources.html"> 
-<span class="menu-text">Resources</span></a>
-  </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
@@ -127,9 +157,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-model" id="toc-the-model" class="nav-link active" data-scroll-target="#the-model">The model</a></li>
-  <li><a href="#calibrating-baseline-transmission" id="toc-calibrating-baseline-transmission" class="nav-link" data-scroll-target="#calibrating-baseline-transmission">Calibrating baseline transmission</a></li>
-  <li><a href="#bed-net-usage-and-model-distribution" id="toc-bed-net-usage-and-model-distribution" class="nav-link" data-scroll-target="#bed-net-usage-and-model-distribution">Bed net usage and model-distribution</a></li>
+  <li><a href="#malariaverse-tutorial-part-2" id="toc-malariaverse-tutorial-part-2" class="nav-link active" data-scroll-target="#malariaverse-tutorial-part-2">Malariaverse Tutorial: Part 2</a></li>
+  <li><a href="#what-infleunces-malaria-transmission" id="toc-what-infleunces-malaria-transmission" class="nav-link" data-scroll-target="#what-infleunces-malaria-transmission">What infleunces malaria transmission</a>
+  <ul class="collapse">
+  <li><a href="#the-environment" id="toc-the-environment" class="nav-link" data-scroll-target="#the-environment">🌧 The environment</a></li>
+  <li><a href="#the-human-population" id="toc-the-human-population" class="nav-link" data-scroll-target="#the-human-population">The human population</a></li>
+  <li><a href="#the-mosquito-population" id="toc-the-mosquito-population" class="nav-link" data-scroll-target="#the-mosquito-population">🦟 The mosquito population:</a></li>
+  </ul></li>
+  <li><a href="#capturing-these-influences-in-malariasimulation" id="toc-capturing-these-influences-in-malariasimulation" class="nav-link" data-scroll-target="#capturing-these-influences-in-malariasimulation">Capturing these influences in <strong>malariasimulation</strong></a>
+  <ul class="collapse">
+  <li><a href="#modelling-seasonality-in-rainfall" id="toc-modelling-seasonality-in-rainfall" class="nav-link" data-scroll-target="#modelling-seasonality-in-rainfall">Modelling seasonality in rainfall</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -139,17 +177,90 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="the-model" class="level3">
-<h3 class="anchored" data-anchor-id="the-model">The model</h3>
-<p>For more information about the transmission model please visit the <a href="https://mrc-ide.github.io/malariasimulation/">malariasimulation homepage</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"malariasimulation"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"postie"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="malariaverse-tutorial-part-2" class="level2">
+<h2 class="anchored" data-anchor-id="malariaverse-tutorial-part-2">Malariaverse Tutorial: Part 2</h2>
+<p>In part 2 we will explore how to capture other important elements that influence malaria transmission besides the baseline transmission and interventions.</p>
+<p>Let’s go!</p>
 </section>
-<section id="calibrating-baseline-transmission" class="level3">
-<h3 class="anchored" data-anchor-id="calibrating-baseline-transmission">Calibrating baseline transmission</h3>
+<section id="what-infleunces-malaria-transmission" class="level2">
+<h2 class="anchored" data-anchor-id="what-infleunces-malaria-transmission">What infleunces malaria transmission</h2>
+<p>Before we dive straight into <strong>malariasimulation</strong> code, it’s helpful for us to consider what other aspects of the environment, human population or mosquito population might be important to capture in our modelling.</p>
+<section id="the-environment" class="level3">
+<h3 class="anchored" data-anchor-id="the-environment">🌧 The environment</h3>
+<p>The key way in which the environment impacts transmission in <strong>malariasimulation</strong> is via rainfall, which drives the availability of mosquito breeding site and there for the number of mosquitoes that can transmit malaria.</p>
 </section>
-<section id="bed-net-usage-and-model-distribution" class="level3">
-<h3 class="anchored" data-anchor-id="bed-net-usage-and-model-distribution">Bed net usage and model-distribution</h3>
+<section id="the-human-population" class="level3">
+<h3 class="anchored" data-anchor-id="the-human-population">The human population</h3>
+<p>We can consider two aspects of the human population as important in different ways</p>
+<p><strong>1. The modelled population size:</strong> We rarely use actual population sizes when modelling malaria in a specific region or country as it would make the model run too slowly! Instead we aim to set the modelled population size high enough such that we minimise very influential stochastic behaviour (e.g.&nbsp;elimination of malaria by chance), whilst keeping model run-time reasonable. There is no single “correct” model population size and often some testing with different population sizes in the most helpful approach. Some elements you want to consider might be: * The level of transmission. At low transmission stochasticity might be more influential and you may therefore want to increase you modelled population size. * The research question. Do you want to capture the impact of stochastic effects with smaller modelled population sizes, or minimise them? * The study population. Remember, if your population of interest is a subset of the total population you may want to increase the modelled poplation size so that the trends in the target population are clear.</p>
+<p><strong>2. The population demography:</strong> We know that there are strong age-related patterns in malaria incidence, severe disease and death. Therefore it is important to accurately capture the age-structure of your target population. We want to ensure the modelled population has the right proportion of infants, children and adults.</p>
+</section>
+<section id="the-mosquito-population" class="level3">
+<h3 class="anchored" data-anchor-id="the-mosquito-population">🦟 The mosquito population:</h3>
+<p>The mosquito population is, not surprisingly, very impactful on modelled malaria transmission. We should not only think about <em>how many</em> mosquitoes, but also <em>what species</em> of mosquito. Different species may behave very differently, meaning that their ability to transmit malaria, or our ability to control them could also look very different from place to place.</p>
+</section>
+</section>
+<section id="capturing-these-influences-in-malariasimulation" class="level2">
+<h2 class="anchored" data-anchor-id="capturing-these-influences-in-malariasimulation">Capturing these influences in <strong>malariasimulation</strong></h2>
+<section id="modelling-seasonality-in-rainfall" class="level3">
+<h3 class="anchored" data-anchor-id="modelling-seasonality-in-rainfall">Modelling seasonality in rainfall</h3>
+<p>We can model a setting where malaria transmission is seasonal, varying throughout the year. The easiest way of doing this is by providing some “seasonality parameters”, these have been fitted to rainfall data to capture how rainfall varies across the year</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">get_parameters</span>()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up for model seasonality</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>parameters<span class="sc">$</span>model_seasonality <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the seasonality parameters: h0, h and g</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>parameters<span class="sc">$</span>h <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Set a seed for reproducible stochastic outputs</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a new simulation</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">run_simulation</span>(</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">timesteps =</span> <span class="dv">365</span> <span class="sc">*</span> <span class="dv">5</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">parameters =</span> parameters</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract formatted prevalence from the raw output and add a run name</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>processed_output <span class="ot">&lt;-</span> <span class="fu">get_prevalence</span>(</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> output,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">baseline_year =</span> <span class="dv">0</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">run =</span> <span class="st">"Seasonal"</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>prev_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> processed_output,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> lm_prevalence_2_10, <span class="at">colour =</span> run)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#31035f"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>), <span class="at">name =</span> <span class="st">"Run"</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Time (years)"</span>) <span class="sc">+</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">italic</span>(Pf) <span class="sc">*</span> Pr[<span class="dv">2-10</span>])) <span class="sc">+</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>prev_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial2_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To find out more about how we estimate the seasonality parameters, have a look at the <a href="Umbrella URL">documentation for the <strong>umbrella</strong> R package</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

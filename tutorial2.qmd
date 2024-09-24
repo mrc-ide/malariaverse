@@ -3,11 +3,84 @@ title: ""
 engine: knitr
 ---
 
-### The model
+```{r, warning=FALSE, message=FALSE}
+# Load packages
+library("malariasimulation")
+library("postie")
+library("dplyr")
+library("ggplot2")
+```
 
-For more information about the transmission model please visit the [malariasimulation homepage](https://mrc-ide.github.io/malariasimulation/).
+## Malariaverse Tutorial: Part 2
 
-### Calibrating baseline transmission
+In part 2 we will explore how to capture other important elements that influence malaria transmission besides the baseline transmission and interventions.
 
+Let's go!
 
-### Bed net usage and model-distribution
+## What infleunces malaria transmission
+
+Before we dive straight into **malariasimulation** code, it's helpful for us to consider what other aspects of the environment, human population or mosquito population might be important to capture in our modelling.
+
+### 🌧 The environment
+
+The key way in which the environment impacts transmission in **malariasimulation** is via rainfall, which drives the availability of mosquito breeding site and there for the number of mosquitoes that can transmit malaria.
+
+### The human population
+
+We can consider two aspects of the human population as important in different ways
+
+**1. The modelled population size:** We rarely use actual population sizes when modelling malaria in a specific region or country as it would make the model run too slowly! Instead we aim to set the modelled population size high enough such that we minimise very influential stochastic behaviour (e.g. elimination of malaria by chance), whilst keeping model run-time reasonable. There is no single "correct" model population size and often some testing with different population sizes in the most helpful approach. Some elements you want to consider might be: \* The level of transmission. At low transmission stochasticity might be more influential and you may therefore want to increase you modelled population size. \* The research question. Do you want to capture the impact of stochastic effects with smaller modelled population sizes, or minimise them? \* The study population. Remember, if your population of interest is a subset of the total population you may want to increase the modelled poplation size so that the trends in the target population are clear.
+
+**2. The population demography:** We know that there are strong age-related patterns in malaria incidence, severe disease and death. Therefore it is important to accurately capture the age-structure of your target population. We want to ensure the modelled population has the right proportion of infants, children and adults.
+
+### 🦟 The mosquito population:
+
+The mosquito population is, not surprisingly, very impactful on modelled malaria transmission. We should not only think about *how many* mosquitoes, but also *what species* of mosquito. Different species may behave very differently, meaning that their ability to transmit malaria, or our ability to control them could also look very different from place to place.
+
+## Capturing these influences in **malariasimulation**
+
+### Modelling seasonality in rainfall
+
+We can model a setting where malaria transmission is seasonal, varying throughout the year. The easiest way of doing this is by providing some "seasonality parameters", these have been fitted to rainfall data to capture how rainfall varies across the year
+
+```{r}
+parameters <- get_parameters()
+
+# Set up for model seasonality
+parameters$model_seasonality <- TRUE
+# Define the seasonality parameters: h0, h and g
+parameters$h <- c(1, -0.5, 0.5)
+
+# Set a seed for reproducible stochastic outputs
+set.seed(1234)
+
+# Run a new simulation
+output <- run_simulation(
+  timesteps = 365 * 5,
+  parameters = parameters
+) 
+
+# Extract formatted prevalence from the raw output and add a run name
+processed_output <- get_prevalence(
+  x = output,
+  baseline_year = 0
+) |>
+  mutate(run = "Seasonal")
+
+prev_plot <- ggplot(
+  data = processed_output,
+  aes(x = time, y = lm_prevalence_2_10, colour = run)
+) +
+  geom_line() +
+  scale_colour_manual(
+    values = c("#31035f", "orange", "blue", "green"), name = "Run"
+  ) +
+  xlab("Time (years)") +
+  ylab(expression(italic(Pf) * Pr[2-10])) +
+  ylim(0, 1) +
+  theme_bw()
+prev_plot
+
+```
+
+To find out more about how we estimate the seasonality parameters, have a look at the [documentation for the **umbrella** R package](Umbrella%20URL)
