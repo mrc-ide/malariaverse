@@ -4,11 +4,13 @@ engine: knitr
 ---
 
 ```{r, warning=FALSE, message=FALSE}
+set.seed(123)
 # Load packages
 library("malariasimulation")
 library("postie")
 library("dplyr")
 library("ggplot2")
+palette <- c("#1B9E77", "#7570B3", "#E7298A", "#D95F02", "#66A61E")
 ```
 
 ## Malariaverse Tutorial: Part 2
@@ -37,6 +39,8 @@ We can consider two aspects of the human population as important in different wa
 
 The mosquito population is, not surprisingly, very impactful on modelled malaria transmission. We should not only think about *how many* mosquitoes, but also *what species* of mosquito. Different species may behave very differently, meaning that their ability to transmit malaria, or our ability to control them could also look very different from place to place.
 
+### The interventions!
+
 ## Capturing these influences in **malariasimulation**
 
 ### Modelling seasonality in rainfall
@@ -48,8 +52,14 @@ parameters <- get_parameters()
 
 # Set up for model seasonality
 parameters$model_seasonality <- TRUE
-# Define the seasonality parameters: h0, h and g
-parameters$h <- c(1, -0.5, 0.5)
+# Define the seasonality parameters: g0, g and h
+parameters$g0 <- 0
+parameters$g <- c(1, 0, 0)
+parameters$h <- c(0, 0, 0)
+
+# Set the baseline EIR
+parameters <- parameters |>
+  set_equilibrium(init_EIR = 10)
 
 # Set a seed for reproducible stochastic outputs
 set.seed(1234)
@@ -73,7 +83,7 @@ prev_plot <- ggplot(
 ) +
   geom_line() +
   scale_colour_manual(
-    values = c("#31035f", "orange", "blue", "green"), name = "Run"
+    values = palette, name = "Run"
   ) +
   xlab("Time (years)") +
   ylab(expression(italic(Pf) * Pr[2-10])) +
@@ -83,4 +93,59 @@ prev_plot
 
 ```
 
-To find out more about how we estimate the seasonality parameters, have a look at the [documentation for the **umbrella** R package](Umbrella%20URL)
+To find out more about how we estimate the seasonality parameters, have a look at the [documentation for the **umbrella** R package](Umbrella%20URL).
+
+We can also set up much more specific seasonal profiles that vary between years and mosquito species. 
+For more information on this, check out the [carrying capacity vignette](https://mrc-ide.github.io/malariasimulation/articles/Carrying-capacity.html).
+
+### Changing the human population size
+
+We can change the modelled human population size with the `human_population` parameter. 
+If we increase the human population to 5000, we can see the impact on our prevalence plot -
+there is much less stochastic noise in the outcome.
+
+Note we need to re-set the `init_EIR` using the `set_equilibrium()` function after
+changing the human population, as the the human population infleucnes the equilibrium. 
+
+```{r}
+parameters$human_population <- 5000
+parameters <- parameters  |>
+  set_equilibrium(init_EIR = 10)
+
+# Run a new simulation
+output <- run_simulation(
+  timesteps = 365 * 5,
+  parameters = parameters
+) 
+
+# Extract formatted prevalence from the raw output and add a run name
+processed_output <- get_prevalence(
+  x = output,
+  baseline_year = 0
+) |>
+  mutate(run = "Seasonal - large population")
+
+prev_plot <- prev_plot +
+  geom_line(data = processed_output, aes(x = time, y = lm_prevalence_2_10, col = run))
+prev_plot
+```
+
+### Changing demography
+
+The default demography in malaria simulation assumes a constant death rate and
+is parametrised using the `average_age` parameter. This leads to a exponentially
+distributed age-pyramid for the modelled population. More complex demographies,
+including those where death rates by age are not constant and, where the demography
+changes over time can be specified using the [`set_demography()`](https://mrc-ide.github.io/malariasimulation/articles/Demography.html#set-custom-demography) functionality
+in malariasimulation. 
+
+### Changing the mosquito population
+
+The mosquito species present in the model run, and their behaviour are critically
+important to the resulting model dynamics and intevention impact. We need to capture
+these differnces as best we can as we know that in different places the number, 
+species and behaviour of mosquitoes will differ.
+
+In malariasimulation we can make use of the powerful `set_species()` function
+to modify the number, type and behaviour of mosquito species in the model. Full
+details can be seen on the [mosquito species vignette](https://mrc-ide.github.io/malariasimulation/articles/SetSpecies.html).

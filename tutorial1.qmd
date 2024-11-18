@@ -41,6 +41,7 @@ library("malariasimulation")
 library("postie")
 library("dplyr")
 library("ggplot2")
+palette <- c("#1B9E77", "#7570B3", "#E7298A", "#D95F02", "#66A61E")
 ```
 
 ------------------------------------------------------------------------
@@ -94,7 +95,7 @@ prev_plot <- ggplot(
 ) +
   geom_line() +
   scale_colour_manual(
-    values = c("#31035f", "orange", "blue", "green"), name = "Run"
+    values = palette, name = "Run"
   ) +
   xlab("Time (years)") +
   ylab(expression(italic(Pf) * Pr[2-10])) +
