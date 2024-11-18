@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>malariaverse</title>
+<title>tutorial3 – malariaverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -92,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -104,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Tutorial - part 2</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./tutorial3.html"> 
+    <a class="nav-link active" href="./tutorial3.html" aria-current="page"> 
 <span class="menu-text">Tutorial - part 3</span></a>
   </li>  
   <li class="nav-item">
@@ -122,8 +122,20 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#part-3---tailoring-model-inputs-to-local-contexts" id="toc-part-3---tailoring-model-inputs-to-local-contexts" class="nav-link active" data-scroll-target="#part-3---tailoring-model-inputs-to-local-contexts">Part 3 - Tailoring Model Inputs to Local Contexts</a></li>
+  <li><a href="#systematically-collating-data-into-country-site-files" id="toc-systematically-collating-data-into-country-site-files" class="nav-link" data-scroll-target="#systematically-collating-data-into-country-site-files">Systematically Collating Data into Country Site Files</a>
+  <ul class="collapse">
+  <li><a href="#providing-access-to-country-site-files" id="toc-providing-access-to-country-site-files" class="nav-link" data-scroll-target="#providing-access-to-country-site-files">Providing Access to Country Site Files</a></li>
+  <li><a href="#converting-country-information-into-simulation-parameters" id="toc-converting-country-information-into-simulation-parameters" class="nav-link" data-scroll-target="#converting-country-information-into-simulation-parameters">Converting Country Information into Simulation Parameters</a></li>
+  <li><a href="#example-running-a-single-site-simulation" id="toc-example-running-a-single-site-simulation" class="nav-link" data-scroll-target="#example-running-a-single-site-simulation">Example: Running a Single Site Simulation</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -131,166 +143,46 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/malariaverse_wide.png" class="quarto-figure quarto-figure-center figure-img" style="width:100.0%;height:100.0%"></p>
-</figure>
-</div>
+<section id="part-3---tailoring-model-inputs-to-local-contexts" class="level2">
+<h2 class="anchored" data-anchor-id="part-3---tailoring-model-inputs-to-local-contexts">Part 3 - Tailoring Model Inputs to Local Contexts</h2>
+<p>In this section, we’ll focus on tailoring the inputs needed to run malariasimulation for a specific geography or context. We’ll discuss how the site package and its associated country site files can provide a systematic starting point for context-specific malaria modelling runs. By the end of this section, you’ll be able to:</p>
+<ul>
+<li>Understand how country site files collate essential data for all malaria-endemic countries.</li>
+<li>Identify the data inputs required for malaria simulations and where they come from.</li>
+<li>Use the site package to convert country information into malariasimulation parameters.</li>
+<li>Run a model for a single site</li>
+<li>Understand the limitations of using global datasets.</li>
+</ul>
 <hr>
-<p>The malariaverse is a constellation of R packages to support the use of <a href="https://mrc-ide.github.io/malariasimulation/">malariasimulation</a> individual-based malaria transmission model for place specific modelling, for example modelling a specific region or country.</p>
-<p>The process often involves:</p>
-<ol type="1">
-<li>Collecting and processing data that are specific to the place.</li>
-<li>Using these data to parameterise <a href="https://mrc-ide.github.io/malariasimulation/">malariasimulation</a>.</li>
-<li>Processing raw model outputs.</li>
-<li>Optimisation.</li>
-</ol>
-<p>Each package targets a specific challenge of this broader process. Current packages in the malariaverse are shown below. Clicking on the package logo will take you to the package site, where you’ll find much more detailed information about what the package does and how to use it.</p>
-<hr>
-<div class="text-center">
-<p><img src="https://mrc-ide.github.io/malariasimulation/reference/figures/malariasimulation.png" class="img-fluid" style="width:25.0%"></p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/malariasimulation/actions"><img src="https://github.com/mrc-ide/malariasimulation/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" class="img-fluid" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-umbrella - fitting seasonality parameters from rainfall data</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/umbrella/actions"><img src="https://github.com/mrc-ide/umbrella/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" class="img-fluid" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
-</div>
-<div class="g-col-6">
-<div class="quarto-figure quarto-figure-right">
-<figure class="figure">
-<p><a href="https://mrc-ide.github.io/umbrella/"><img src="https://mrc-ide.github.io/umbrella/reference/figures/Umbrella.png" class="img-fluid quarto-figure quarto-figure-right figure-img" style="width:50.0%"></a></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><a href="https://mrc-ide.github.io/netz/"><img src="https://mrc-ide.github.io/netz/reference/figures/Netz.png" class="img-fluid" style="width:50.0%"></a></p>
-</div>
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-netz - managing net metrics and distributions</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/netz/actions"><img src="https://github.com/mrc-ide/netz/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" class="img-fluid" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-peeps - population demography</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/peeps/actions"><img src="https://github.com/mrc-ide/peeps/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#wip"><img src="https://www.repostatus.org/badges/latest/wip.svg" class="img-fluid" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public."></a></p>
-</div>
-<div class="g-col-6">
-<div class="quarto-figure quarto-figure-right">
-<figure class="figure">
-<p><a href="https://mrc-ide.github.io/peeps/"><img src="https://mrc-ide.github.io/peeps/reference/figures/Peeps.png" class="img-fluid quarto-figure quarto-figure-right figure-img" style="width:50.0%"></a></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><a href="https://mrc-ide.github.io/site/"><img src="https://mrc-ide.github.io/site/reference/figures/Site.png" class="img-fluid" style="width:50.0%"></a></p>
-</div>
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-site - country and sub-national site information and conversion to malariasimulation parameters</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/site/actions"><img src="https://github.com/mrc-ide/site/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" class="img-fluid" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-cali - calibrating model transmission</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/cali/actions"><img src="https://github.com/mrc-ide/cali/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" class="img-fluid" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
-</div>
-<div class="g-col-6">
-<div class="quarto-figure quarto-figure-right">
-<figure class="figure">
-<p><a href="https://mrc-ide.github.io/cali/"><img src="https://mrc-ide.github.io/cali/reference/figures/Cali.png" class="img-fluid quarto-figure quarto-figure-right figure-img" style="width:50.0%"></a></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><a href="https://mrc-ide.github.io/scene/"><img src="https://mrc-ide.github.io/scene/reference/figures/Scene.png" class="img-fluid" style="width:50.0%"></a></p>
-</div>
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-scene - future scenario builder</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/scene/actions"><img src="https://github.com/mrc-ide/scene/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#wip"><img src="https://www.repostatus.org/badges/latest/wip.svg" class="img-fluid" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public."></a></p>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-postie - post-processing of malariasimulation outputs</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/postie/actions"><img src="https://github.com/mrc-ide/postie/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#wip"><img src="https://www.repostatus.org/badges/latest/wip.svg" class="img-fluid" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public."></a></p>
-</div>
-<div class="g-col-6">
-<div class="quarto-figure quarto-figure-right">
-<figure class="figure">
-<p><a href="https://mrc-ide.github.io/postie/"><img src="https://mrc-ide.github.io/postie/reference/figures/Postie.png" class="img-fluid quarto-figure quarto-figure-right figure-img" style="width:50.0%"></a></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><a href="https://mrc-ide.github.io/om/"><img src="https://mrc-ide.github.io/om/reference/figures/Om.png" class="img-fluid" style="width:50.0%"></a></p>
-</div>
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-om - intervention stratification optimisation with complex budgets</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/om/actions"><img src="https://github.com/mrc-ide/om/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" class="img-fluid" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-treasure - a repository for costing data</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/treasure/actions"><img src="https://github.com/mrc-ide/treasure/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" class="img-fluid" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
-</div>
-<div class="g-col-6">
-<div class="quarto-figure quarto-figure-right">
-<figure class="figure">
-<p><a href="https://mrc-ide.github.io/treasure/"><img src="https://mrc-ide.github.io/treasure/reference/figures/Treasure.png" class="img-fluid quarto-figure quarto-figure-right figure-img" style="width:50.0%"></a></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
+</section>
+<section id="systematically-collating-data-into-country-site-files" class="level2">
+<h2 class="anchored" data-anchor-id="systematically-collating-data-into-country-site-files">Systematically Collating Data into Country Site Files</h2>
+<p>Running malariasimulation for a specific context requires diverse data inputs, including historical interventions, seasonality, population demography, and mosquito population characteristics. Collecting this information systematically across all malaria-endemic countries is no small task. To address this, the country site files consolidate these inputs for each country using globally available datasets.</p>
+<p>The site files aim to provide a comprehensive overview of relevant data for each malaria-endemic country. This includes ecological, demographic, and intervention-specific information, which serves as a starting point for simulations. But please note:</p>
+<p>⚠️ It is essential to review these data critically before applying them to your specific context. ⚠️ If using a site file, it is important that you correctly reference each data input - referecing the site package alone isn’t enough!</p>
+<p>To explore the full range of inputs included in the country site files, see the detailed documentation on the site website. Introducing the site Package</p>
+<p>The site package provides tools to access and utilise the country site files for malaria modelling.This R package simplifies the process of tailoring your modelling inputs by:</p>
+<section id="providing-access-to-country-site-files" class="level3">
+<h3 class="anchored" data-anchor-id="providing-access-to-country-site-files">Providing Access to Country Site Files</h3>
+<p>You can sign up for access to the site files and download them directly. Detailed instructions on how to do this, along with an example, are available here……….</p>
+</section>
+<section id="converting-country-information-into-simulation-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="converting-country-information-into-simulation-parameters">Converting Country Information into Simulation Parameters</h3>
+<p>Once downloaded, the site package allows you to convert the collated country-specific data into the input parameters required by malariasimulation. This includes calibrating baseline transmission, seasonal patterns, and intervention histories to the context of your chosen geography.</p>
+<p>Limitations of the Country Site Files</p>
+<p>While the site files offer a valuable starting point for malaria modelling, there are some important caveats to keep in mind:</p>
+<p>⚠️ Data Coarseness The site files are based on globally available datasets, and some inputs are only available at the country level. This means that the spatial and temporal resolution of the data may be too coarse for detailed local analyses. If you are using a site file for context-specific modelling, it is highly recommended to review and incorporate any additional local data that may be available to refine and recalibrate the inputs.</p>
+<p>⚠️ Data Source Identification If using site files for research, it is crucial to identify and properly cite the underlying datasets. Each section of the site file includes relevant data sources, which must be reviewed and included in your research citations. Simply citing the site package is not sufficient.</p>
+<p>⚠️ Plasmodium vivax Simulations While site files include fitted EIRs and options to model Plasmodium vivax, it’s important to note that malariasimulation is primarily a model for Plasmodium falciparum. Any outputs for Plasmodium vivax should be treated as crude approximations that do not fully capture the unique biological and control dynamics of this species. Use with caution.</p>
+<p>With these limitations in mind, let’s proceed to run a single site simulation and see how the site files can be applied in practice.</p>
+</section>
+<section id="example-running-a-single-site-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="example-running-a-single-site-simulation">Example: Running a Single Site Simulation</h3>
+<p>Using the site package, we’ll demonstrate how to set up and run a simulation for a single site.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

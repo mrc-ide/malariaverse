@@ -13,6 +13,8 @@ website:
         text: Tutorial - part 1
       - href: tutorial2.qmd
         text: Tutorial - part 2
+      - href: tutorial3.qmd
+        text: Tutorial - part 3
       - href: about.qmd
         text: More information
   page-footer:

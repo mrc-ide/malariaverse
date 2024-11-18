@@ -138,6 +138,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Tutorial - part 2</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./tutorial3.html"> 
+<span class="menu-text">Tutorial - part 3</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">More information</span></a>
   </li>  
@@ -171,6 +175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#changing-demography" id="toc-changing-demography" class="nav-link" data-scroll-target="#changing-demography">Changing demography</a></li>
   <li><a href="#changing-the-mosquito-population" id="toc-changing-the-mosquito-population" class="nav-link" data-scroll-target="#changing-the-mosquito-population">Changing the mosquito population</a></li>
   </ul></li>
+  <li><a href="#part-3---tailoring-model-inputs-to-local-contexts" id="toc-part-3---tailoring-model-inputs-to-local-contexts" class="nav-link" data-scroll-target="#part-3---tailoring-model-inputs-to-local-contexts">Part 3 - tailoring model inputs to local contexts</a></li>
   </ul>
 </nav>
     </div>
@@ -181,13 +186,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"malariasimulation"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"postie"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>palette <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#1B9E77"</span>, <span class="st">"#7570B3"</span>, <span class="st">"#E7298A"</span>, <span class="st">"#D95F02"</span>, <span class="st">"#66A61E"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"malariasimulation"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"postie"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>palette <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#1B9E77"</span>, <span class="st">"#7570B3"</span>, <span class="st">"#E7298A"</span>, <span class="st">"#D95F02"</span>, <span class="st">"#66A61E"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="malariaverse-tutorial-part-2" class="level2">
 <h2 class="anchored" data-anchor-id="malariaverse-tutorial-part-2">Malariaverse Tutorial: Part 2</h2>
@@ -283,25 +287,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> parameters  <span class="sc">|&gt;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_equilibrium</span>(<span class="at">init_EIR =</span> <span class="dv">10</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a new simulation</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">run_simulation</span>(</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">timesteps =</span> <span class="dv">365</span> <span class="sc">*</span> <span class="dv">5</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">parameters =</span> parameters</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>) </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract formatted prevalence from the raw output and add a run name</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>processed_output <span class="ot">&lt;-</span> <span class="fu">get_prevalence</span>(</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> output,</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">baseline_year =</span> <span class="dv">0</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">run =</span> <span class="st">"Seasonal - large population"</span>,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">run =</span> <span class="fu">factor</span>(run, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Seasonal"</span>, <span class="st">"Seasonal - large population"</span>))</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>prev_plot <span class="ot">&lt;-</span> prev_plot <span class="sc">+</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> processed_output, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> lm_prevalence_2_10, <span class="at">col =</span> run))</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>prev_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Set a seed for reproducible stochastic outputs</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Run a new simulation</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">run_simulation</span>(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">timesteps =</span> <span class="dv">365</span> <span class="sc">*</span> <span class="dv">5</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">parameters =</span> parameters</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract formatted prevalence from the raw output and add a run name</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>processed_output <span class="ot">&lt;-</span> <span class="fu">get_prevalence</span>(</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> output,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">baseline_year =</span> <span class="dv">0</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">run =</span> <span class="st">"Seasonal - large population"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">run =</span> <span class="fu">factor</span>(run, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Seasonal"</span>, <span class="st">"Seasonal - large population"</span>))</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>prev_plot <span class="ot">&lt;-</span> prev_plot <span class="sc">+</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> processed_output, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> lm_prevalence_2_10, <span class="at">col =</span> run))</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>prev_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -319,9 +326,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="changing-the-mosquito-population">Changing the mosquito population</h3>
 <p>The mosquito species present in the model run, and their behaviour are critically important to the resulting model dynamics and intevention impact. We need to capture these differnces as best we can as we know that in different places the number, species and behaviour of mosquitoes will differ.</p>
 <p>In malariasimulation we can make use of the powerful <code>set_species()</code> function to modify the number, type and behaviour of mosquito species in the model. Full details can be seen on the <a href="https://mrc-ide.github.io/malariasimulation/articles/SetSpecies.html">mosquito species vignette</a>.</p>
-
-
+<hr>
 </section>
+</section>
+<section id="part-3---tailoring-model-inputs-to-local-contexts" class="level2">
+<h2 class="anchored" data-anchor-id="part-3---tailoring-model-inputs-to-local-contexts">Part 3 - tailoring model inputs to local contexts</h2>
+<p>We now understand many of the important inputs that need to be tailored to run malariasimulation for a specific geography or context. These include:</p>
+<ul>
+<li>Baseline transmission</li>
+<li>Historical interventions</li>
+<li>Seasonality # Population demography</li>
+<li>Mosqito population characteristics</li>
+</ul>
+<p>That’s quite a lot of information to gather! If you already have access to this data—great!<br>
+If not, in part 3(URL), we will talk about the <code>site</code> package and explore how the country site-files it includes can serve as a useful starting point for context-specific modelling runs.</p>
+
+
 </section>
 
 </main> <!-- /main -->

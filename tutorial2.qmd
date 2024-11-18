@@ -4,7 +4,6 @@ engine: knitr
 ---
 
 ```{r, warning=FALSE, message=FALSE}
-set.seed(123)
 # Load packages
 library("malariasimulation")
 library("postie")
@@ -113,6 +112,9 @@ parameters$human_population <- 5000
 parameters <- parameters  |>
   set_equilibrium(init_EIR = 10)
 
+# Set a seed for reproducible stochastic outputs
+set.seed(1234)
+
 # Run a new simulation
 output <- run_simulation(
   timesteps = 365 * 5,
@@ -153,3 +155,22 @@ species and behaviour of mosquitoes will differ.
 In malariasimulation we can make use of the powerful `set_species()` function
 to modify the number, type and behaviour of mosquito species in the model. Full
 details can be seen on the [mosquito species vignette](https://mrc-ide.github.io/malariasimulation/articles/SetSpecies.html).
+
+------------------------------------------------------------------------
+
+## Part 3 - tailoring model inputs to local contexts
+
+We now understand many of the important inputs that need to be tailored to run
+malariasimulation for a specific geography or context. These include:
+
+* Baseline transmission
+* Historical interventions
+* Seasonality
+# Population demography
+* Mosqito population characteristics
+
+That’s quite a lot of information to gather! 
+If you already have access to this data—great!  
+If not, in part 3(URL), we will talk about the `site` package and explore how the
+country site-files it includes can serve as a useful starting point for
+context-specific modelling runs.
