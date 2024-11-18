@@ -82,7 +82,10 @@ processed_output <- get_prevalence(
   x = output,
   baseline_year = 0
 ) |>
-  mutate(run = "Baseline")
+  mutate(
+    run = "Baseline",
+    run = factor(run, levels = "Baseline")
+    )
 glimpse(processed_output)
 ```
 
@@ -131,7 +134,10 @@ processed_output <- get_prevalence(
   x = output,
   baseline_year = 0
 ) |>
-  mutate(run = "Modified EIR")
+  mutate(
+    run = "Modified EIR",
+    run = factor(run, levels = c("Baseline", "Modified EIR"))
+    )
 
 # Add the output from our latest model run to the plot
 prev_plot <- prev_plot + 
@@ -142,6 +148,8 @@ prev_plot
 ```
 
 Our `Baseline` run used the default EIR of 10. For our modified run, we can see the impact of lowering the EIR to 2 - *Pf*PR~2-10~ has fallen from around 50% to 20%.
+
+The intrinsic or baseline carrying capacity of an area refers to the maximum number of mosquitoes that the environment can naturally support, determined by local ecological factors. This capacity sets the potential level of malaria transmission in a region by shaping the population size of the malaria vector. Areas with higher carrying capacity sustain larger mosquito populations, which can drive higher transmission rates. Understanding this baseline is crucial in malaria modelling, as it underpins the natural transmission dynamics and informs the impact of interventions.
 
 ------------------------------------------------------------------------
 
@@ -190,7 +198,10 @@ processed_output <- get_prevalence(
   x = output,
   baseline_year = 0
 ) |>
-  mutate(run = "MDA")
+  mutate(
+    run = "MDA",
+    run = factor(run, levels = c("Baseline", "Modified EIR", "MDA"))
+    )
 
 # Add the output from our latest model run to the plot
 prev_plot <- prev_plot + 
@@ -239,7 +250,10 @@ processed_output <- get_prevalence(
   x = output,
   baseline_year = 0
 ) |>
-  mutate(run = "MDA + Bednets")
+  mutate(
+    run = "MDA + Bednets",
+    run = factor(run, levels = c("Baseline", "Modified EIR", "MDA", "MDA + Bednets"))
+    )
 
 # Add the output from our latest model run to the plot
 prev_plot <- prev_plot + 

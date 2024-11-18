@@ -275,8 +275,11 @@ $ natural_deaths        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> output,</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">baseline_year =</span> <span class="dv">0</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">run =</span> <span class="st">"Baseline"</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(processed_output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">run =</span> <span class="st">"Baseline"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">run =</span> <span class="fu">factor</span>(run, <span class="at">levels =</span> <span class="st">"Baseline"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(processed_output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1,825
 Columns: 7
@@ -286,7 +289,7 @@ $ week               &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3,
 $ day                &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, …
 $ time               &lt;dbl&gt; 0.000000000, 0.002739726, 0.005479452, 0.008219178,…
 $ lm_prevalence_2_10 &lt;dbl&gt; 0.3513514, 0.3513514, 0.3513514, 0.3513514, 0.35135…
-$ run                &lt;chr&gt; "Baseline", "Baseline", "Baseline", "Baseline", "Ba…</code></pre>
+$ run                &lt;fct&gt; Baseline, Baseline, Baseline, Baseline, Baseline, B…</code></pre>
 </div>
 </div>
 <p>Often, the best way to examine outputs is to plot them. Malaria prevalence indicates the <em>“Proportion of a specified population with malaria infection at one time”</em>. We can plot <em>Plasmodium falciparum</em> parasite prevalence in 2-10 year (<em>Pf</em>PR<sub>2-10</sub>) olds over time.</p>
@@ -337,14 +340,17 @@ $ run                &lt;chr&gt; "Baseline", "Baseline", "Baseline", "Baseline",
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> output,</span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">baseline_year =</span> <span class="dv">0</span></span>
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">run =</span> <span class="st">"Modified EIR"</span>)</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the output from our latest model run to the plot</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>prev_plot <span class="ot">&lt;-</span> prev_plot <span class="sc">+</span> </span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> processed_output, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> lm_prevalence_2_10, <span class="at">col =</span> run)</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>prev_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">run =</span> <span class="st">"Modified EIR"</span>,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">run =</span> <span class="fu">factor</span>(run, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Baseline"</span>, <span class="st">"Modified EIR"</span>))</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the output from our latest model run to the plot</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>prev_plot <span class="ot">&lt;-</span> prev_plot <span class="sc">+</span> </span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> processed_output, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> lm_prevalence_2_10, <span class="at">col =</span> run)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>prev_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -354,6 +360,7 @@ $ run                &lt;chr&gt; "Baseline", "Baseline", "Baseline", "Baseline",
 </div>
 </div>
 <p>Our <code>Baseline</code> run used the default EIR of 10. For our modified run, we can see the impact of lowering the EIR to 2 - <em>Pf</em>PR<sub>2-10</sub> has fallen from around 50% to 20%.</p>
+<p>The intrinsic or baseline carrying capacity of an area refers to the maximum number of mosquitoes that the environment can naturally support, determined by local ecological factors. This capacity sets the potential level of malaria transmission in a region by shaping the population size of the malaria vector. Areas with higher carrying capacity sustain larger mosquito populations, which can drive higher transmission rates. Understanding this baseline is crucial in malaria modelling, as it underpins the natural transmission dynamics and informs the impact of interventions.</p>
 <hr>
 </section>
 </section>
@@ -400,14 +407,17 @@ $ run                &lt;chr&gt; "Baseline", "Baseline", "Baseline", "Baseline",
 <span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> output,</span>
 <span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">baseline_year =</span> <span class="dv">0</span></span>
 <span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">run =</span> <span class="st">"MDA"</span>)</span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the output from our latest model run to the plot</span></span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>prev_plot <span class="ot">&lt;-</span> prev_plot <span class="sc">+</span> </span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> processed_output, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> lm_prevalence_2_10, <span class="at">col =</span> run)</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>prev_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">run =</span> <span class="st">"MDA"</span>,</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">run =</span> <span class="fu">factor</span>(run, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Baseline"</span>, <span class="st">"Modified EIR"</span>, <span class="st">"MDA"</span>))</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the output from our latest model run to the plot</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>prev_plot <span class="ot">&lt;-</span> prev_plot <span class="sc">+</span> </span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> processed_output, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> lm_prevalence_2_10, <span class="at">col =</span> run)</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>prev_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -453,14 +463,17 @@ $ run                &lt;chr&gt; "Baseline", "Baseline", "Baseline", "Baseline",
 <span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> output,</span>
 <span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">baseline_year =</span> <span class="dv">0</span></span>
 <span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">run =</span> <span class="st">"MDA + Bednets"</span>)</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the output from our latest model run to the plot</span></span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>prev_plot <span class="ot">&lt;-</span> prev_plot <span class="sc">+</span> </span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> processed_output, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> lm_prevalence_2_10, <span class="at">col =</span> run)</span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>prev_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">run =</span> <span class="st">"MDA + Bednets"</span>,</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">run =</span> <span class="fu">factor</span>(run, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Baseline"</span>, <span class="st">"Modified EIR"</span>, <span class="st">"MDA"</span>, <span class="st">"MDA + Bednets"</span>))</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the output from our latest model run to the plot</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>prev_plot <span class="ot">&lt;-</span> prev_plot <span class="sc">+</span> </span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> processed_output, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> lm_prevalence_2_10, <span class="at">col =</span> run)</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>prev_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

@@ -39,8 +39,6 @@ We can consider two aspects of the human population as important in different wa
 
 The mosquito population is, not surprisingly, very impactful on modelled malaria transmission. We should not only think about *how many* mosquitoes, but also *what species* of mosquito. Different species may behave very differently, meaning that their ability to transmit malaria, or our ability to control them could also look very different from place to place.
 
-### The interventions!
-
 ## Capturing these influences in **malariasimulation**
 
 ### Modelling seasonality in rainfall
@@ -75,7 +73,10 @@ processed_output <- get_prevalence(
   x = output,
   baseline_year = 0
 ) |>
-  mutate(run = "Seasonal")
+  mutate(
+    run = "Seasonal",
+    run = factor(run, levels = c("Seasonal"))
+    )
 
 prev_plot <- ggplot(
   data = processed_output,
@@ -123,7 +124,10 @@ processed_output <- get_prevalence(
   x = output,
   baseline_year = 0
 ) |>
-  mutate(run = "Seasonal - large population")
+  mutate(
+    run = "Seasonal - large population",
+    run = factor(run, levels = c("Seasonal", "Seasonal - large population"))
+    )
 
 prev_plot <- prev_plot +
   geom_line(data = processed_output, aes(x = time, y = lm_prevalence_2_10, col = run))
