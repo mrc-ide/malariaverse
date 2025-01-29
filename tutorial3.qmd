@@ -5,91 +5,107 @@ engine: knitr
 
 ## Part 3 - Tailoring Model Inputs to Local Contexts
 
-In this section, we’ll focus on tailoring the inputs needed to run 
-malariasimulation for a specific geography or context. 
-We’ll discuss how the site package and its associated country site files can 
-provide a systematic starting point for context-specific malaria modelling runs.
-By the end of this section, you’ll be able to:
+In this section, we’ll focus on tailoring the inputs needed to run malariasimulation for a specific geography or context. We’ll discuss how the site package and its associated country site files can provide a systematic starting point for context-specific malaria modelling runs. By the end of this section, you’ll be able to:
 
-* Understand how country site files collate essential data for all 
-malaria-endemic countries.
-* Identify the data inputs required for malaria simulations and where they come 
-from.
-* Use the site package to convert country information into malariasimulation 
-parameters.
-* Run a model for a single site
-* Understand the limitations of using global datasets.
+-   Understand how country site files collate essential data for all malaria-endemic countries.
+-   Identify the data inputs required for malaria simulations and where they come from.
+-   Use the site package to convert country information into malariasimulation parameters.
+-   Run a model for a single site
+-   Understand the limitations of using global datasets.
 
 ------------------------------------------------------------------------
 
 ## Systematically Collating Data into Country Site Files
 
-Running malariasimulation for a specific context requires diverse data inputs, 
-including historical interventions, seasonality, population demography, and 
-mosquito population characteristics. 
-Collecting this information systematically across all malaria-endemic countries 
-is no small task. To address this, the country site files consolidate these 
-inputs for each country using globally available datasets.
+Running malariasimulation for a specific context requires diverse data inputs, including historical interventions, seasonality, population demography, and mosquito population characteristics. Collecting this information systematically across all malaria-endemic countries is no small task. To address this, the country site files consolidate these inputs for each country using globally available datasets.
 
-The site files aim to provide a comprehensive overview of relevant data for each 
-malaria-endemic country. This includes ecological, demographic, and 
-intervention-specific information, which serves as a starting point for 
-simulations. 
-But please note: 
+The site files aim to provide a comprehensive overview of relevant data for each malaria-endemic country. This includes ecological, demographic, and intervention-specific information, which serves as a starting point for simulations. But please note:
 
-⚠️ It is essential to review these data critically before applying them to your 
-specific context.
-⚠️ If using a site file, it is important that you correctly reference each data 
-input - referecing the site package alone isn't enough!
+⚠️ It is essential to review these data critically before applying them to your specific context. ⚠️ If using a site file, it is important that you correctly reference each data input - referencing the site package alone isn't enough!
 
-To explore the full range of inputs included in the country site files, see the 
-detailed documentation on the site website.
-Introducing the site Package
+To explore the full range of inputs included in the country site files, see the detailed documentation on the site website. Introducing the site Package
 
-The site package provides tools to access and utilise the country site files for 
-malaria modelling.This R package simplifies the process of tailoring your 
-modelling inputs by:
+The site package provides tools to access and utilise the country site files for malaria modelling.This R package simplifies the process of tailoring your modelling inputs by:
 
-### Providing Access to Country Site Files
-You can sign up for access to the site files and download them directly. 
-Detailed instructions on how to do this, along with an example, are available here..........
+### Accessing to Country Site Files
+
+You can sign up for access to the site files and download them directly. Detailed instructions on how to do this, along with an example, are available [here](Site%20package%20URL).
 
 ### Converting Country Information into Simulation Parameters
-Once downloaded, the site package allows you to convert the collated 
-country-specific data into the input parameters required by malariasimulation. 
-This includes calibrating baseline transmission, seasonal patterns, and 
-intervention histories to the context of your chosen geography.
+
+Once downloaded, the site package allows you to convert the collated country-specific data into the input parameters required by malariasimulation. This includes calibrating baseline transmission, seasonal patterns, and intervention histories to the context of your chosen geography.
 
 Limitations of the Country Site Files
 
-While the site files offer a valuable starting point for malaria modelling, 
-there are some important caveats to keep in mind:
+While the site files offer a valuable starting point for malaria modelling, there are some important caveats to keep in mind:
 
-⚠️ Data Coarseness
-The site files are based on globally available datasets, and some inputs are 
-only available at the country level. This means that the spatial and temporal 
-resolution of the data may be too coarse for detailed local analyses. If you are
-using a site file for context-specific modelling, it is highly recommended to 
-review and incorporate any additional local data that may be available to refine
-and recalibrate the inputs.
+⚠️ Data Coarseness The site files are based on globally available datasets, and some inputs are only available at the country level. This means that the spatial and temporal resolution of the data may be too coarse for detailed local analyses. If you are using a site file for context-specific modelling, it is highly recommended to review and incorporate any additional local data that may be available to refine and recalibrate the inputs.
 
-⚠️ Data Source Identification
-If using site files for research, it is crucial to identify and properly cite 
-the underlying datasets. Each section of the site file includes relevant data 
-sources, which must be reviewed and included in your research citations. Simply
-citing the site package is not sufficient.
+⚠️ Data Source Identification If using site files for research, it is crucial to identify and properly cite the underlying datasets. Each section of the site file includes relevant data sources, which must be reviewed and included in your research citations. Simply citing the site package is not sufficient.
 
-⚠️ Plasmodium vivax Simulations
-While site files include fitted EIRs and options to model Plasmodium vivax, it’s
-important to note that malariasimulation is primarily a model for Plasmodium 
-falciparum. Any outputs for Plasmodium vivax should be treated as crude 
-approximations that do not fully capture the unique biological and control 
-dynamics of this species. Use with caution.
+⚠️ Plasmodium vivax Simulations While site files include fitted EIRs and options to model Plasmodium vivax, it’s important to note that malariasimulation is primarily a model for Plasmodium falciparum. Any outputs for Plasmodium vivax should be treated as crude approximations that do not fully capture the unique biological and control dynamics of this species. Use with caution.
 
-With these limitations in mind, let’s proceed to run a single site simulation 
-and see how the site files can be applied in practice.
+With these limitations in mind, let’s proceed to run a single site simulation and see how the site files can be applied in practice.
 
 ### Example: Running a Single Site Simulation
 
-Using the site package, we’ll demonstrate how to set up and run a simulation 
-for a single site.
+Using the site package, we’ll demonstrate how to set up and run a simulation for a single site.
+
+``` {r, eval=FALSE}
+library(site)
+library(malariasimulation)
+
+# Download the latest site file for Nigeria
+nigeria <- fetch_site(
+  iso3c = "NGA"
+)
+
+# Pull out data for a single site from the site file.
+site_filter <- data.frame(
+  name_1 = "",
+  urban_rural = "rural"
+)
+site <- subset_site(
+  site = nigeria,
+  site_filter = site_filter
+)
+
+# Convert to malariasimulation parameters
+parameters <- site_parameters(
+  interventions = site$interventions,
+  demography = site$demography,
+  vectors = site$vectors,
+  seasonality = site$seasonality$AAAAA,
+)
+
+# Run the simulation
+simulation <- run_simulation(
+  timesteps = parameters$timesteps,
+  parameters = parameters
+)
+```
+
+### Future scenarios
+
+Often, we would like to model future scenarios. To do this we can modify a
+version of the site, adding future rows (years) to the interventions data.frame.
+
+For a full exploration of designing and specifying future scenarios, please see
+the documentation for the [scene packahe](URL).
+
+### Recalibration
+
+The baseline transmission for each site has been calibrated such that given
+the observed historical scale-up of interventions we best match prevalence
+estimates. This is a very important step as the level of baseline transmission
+is very influential, impacting the malaria burden and how well interventions
+may be able to control malaria in you simulation. 
+
+This calibration is contingent on the historical scale up of interventions and
+other aspects of the site file which determine dynamics in the past. Therefore,
+any changes made historically will necessitate re-calibrating the baseline. This could be for example, updating the historical scale up of bed nets with
+improved, site-specific data, or changing the assumptions of which vector
+species are present at a site.
+
+For an in depth explainer and additional functionality to help with re-calibration please see the information in the [cali package](url)
+

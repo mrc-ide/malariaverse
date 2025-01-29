@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -130,9 +164,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#part-3---tailoring-model-inputs-to-local-contexts" id="toc-part-3---tailoring-model-inputs-to-local-contexts" class="nav-link active" data-scroll-target="#part-3---tailoring-model-inputs-to-local-contexts">Part 3 - Tailoring Model Inputs to Local Contexts</a></li>
   <li><a href="#systematically-collating-data-into-country-site-files" id="toc-systematically-collating-data-into-country-site-files" class="nav-link" data-scroll-target="#systematically-collating-data-into-country-site-files">Systematically Collating Data into Country Site Files</a>
   <ul class="collapse">
-  <li><a href="#providing-access-to-country-site-files" id="toc-providing-access-to-country-site-files" class="nav-link" data-scroll-target="#providing-access-to-country-site-files">Providing Access to Country Site Files</a></li>
+  <li><a href="#accessing-to-country-site-files" id="toc-accessing-to-country-site-files" class="nav-link" data-scroll-target="#accessing-to-country-site-files">Accessing to Country Site Files</a></li>
   <li><a href="#converting-country-information-into-simulation-parameters" id="toc-converting-country-information-into-simulation-parameters" class="nav-link" data-scroll-target="#converting-country-information-into-simulation-parameters">Converting Country Information into Simulation Parameters</a></li>
   <li><a href="#example-running-a-single-site-simulation" id="toc-example-running-a-single-site-simulation" class="nav-link" data-scroll-target="#example-running-a-single-site-simulation">Example: Running a Single Site Simulation</a></li>
+  <li><a href="#future-scenarios" id="toc-future-scenarios" class="nav-link" data-scroll-target="#future-scenarios">Future scenarios</a></li>
+  <li><a href="#recalibration" id="toc-recalibration" class="nav-link" data-scroll-target="#recalibration">Recalibration</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -159,12 +195,12 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="systematically-collating-data-into-country-site-files">Systematically Collating Data into Country Site Files</h2>
 <p>Running malariasimulation for a specific context requires diverse data inputs, including historical interventions, seasonality, population demography, and mosquito population characteristics. Collecting this information systematically across all malaria-endemic countries is no small task. To address this, the country site files consolidate these inputs for each country using globally available datasets.</p>
 <p>The site files aim to provide a comprehensive overview of relevant data for each malaria-endemic country. This includes ecological, demographic, and intervention-specific information, which serves as a starting point for simulations. But please note:</p>
-<p>⚠️ It is essential to review these data critically before applying them to your specific context. ⚠️ If using a site file, it is important that you correctly reference each data input - referecing the site package alone isn’t enough!</p>
+<p>⚠️ It is essential to review these data critically before applying them to your specific context. ⚠️ If using a site file, it is important that you correctly reference each data input - referencing the site package alone isn’t enough!</p>
 <p>To explore the full range of inputs included in the country site files, see the detailed documentation on the site website. Introducing the site Package</p>
 <p>The site package provides tools to access and utilise the country site files for malaria modelling.This R package simplifies the process of tailoring your modelling inputs by:</p>
-<section id="providing-access-to-country-site-files" class="level3">
-<h3 class="anchored" data-anchor-id="providing-access-to-country-site-files">Providing Access to Country Site Files</h3>
-<p>You can sign up for access to the site files and download them directly. Detailed instructions on how to do this, along with an example, are available here……….</p>
+<section id="accessing-to-country-site-files" class="level3">
+<h3 class="anchored" data-anchor-id="accessing-to-country-site-files">Accessing to Country Site Files</h3>
+<p>You can sign up for access to the site files and download them directly. Detailed instructions on how to do this, along with an example, are available <a href="Site package URL">here</a>.</p>
 </section>
 <section id="converting-country-information-into-simulation-parameters" class="level3">
 <h3 class="anchored" data-anchor-id="converting-country-information-into-simulation-parameters">Converting Country Information into Simulation Parameters</h3>
@@ -179,6 +215,50 @@ ul.task-list li input[type="checkbox"] {
 <section id="example-running-a-single-site-simulation" class="level3">
 <h3 class="anchored" data-anchor-id="example-running-a-single-site-simulation">Example: Running a Single Site Simulation</h3>
 <p>Using the site package, we’ll demonstrate how to set up and run a simulation for a single site.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(site)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(malariasimulation)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Download the latest site file for Nigeria</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>nigeria <span class="ot">&lt;-</span> <span class="fu">fetch_site</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">iso3c =</span> <span class="st">"NGA"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull out data for a single site from the site file.</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>site_filter <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_1 =</span> <span class="st">""</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">urban_rural =</span> <span class="st">"rural"</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>site <span class="ot">&lt;-</span> <span class="fu">subset_site</span>(</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">site =</span> nigeria,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">site_filter =</span> site_filter</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to malariasimulation parameters</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>parameters <span class="ot">&lt;-</span> <span class="fu">site_parameters</span>(</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">interventions =</span> site<span class="sc">$</span>interventions,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">demography =</span> site<span class="sc">$</span>demography,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">vectors =</span> site<span class="sc">$</span>vectors,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">seasonality =</span> site<span class="sc">$</span>seasonality<span class="sc">$</span>AAAAA,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the simulation</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>simulation <span class="ot">&lt;-</span> <span class="fu">run_simulation</span>(</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">timesteps =</span> parameters<span class="sc">$</span>timesteps,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">parameters =</span> parameters</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="future-scenarios" class="level3">
+<h3 class="anchored" data-anchor-id="future-scenarios">Future scenarios</h3>
+<p>Often, we would like to model future scenarios. To do this we can modify a version of the site, adding future rows (years) to the interventions data.frame.</p>
+<p>For a full exploration of designing and specifying future scenarios, please see the documentation for the <a href="URL">scene packahe</a>.</p>
+</section>
+<section id="recalibration" class="level3">
+<h3 class="anchored" data-anchor-id="recalibration">Recalibration</h3>
+<p>The baseline transmission for each site has been calibrated such that given the observed historical scale-up of interventions we best match prevalence estimates. This is a very important step as the level of baseline transmission is very influential, impacting the malaria burden and how well interventions may be able to control malaria in you simulation.</p>
+<p>This calibration is contingent on the historical scale up of interventions and other aspects of the site file which determine dynamics in the past. Therefore, any changes made historically will necessitate re-calibrating the baseline. This could be for example, updating the historical scale up of bed nets with improved, site-specific data, or changing the assumptions of which vector species are present at a site.</p>
+<p>For an in depth explainer and additional functionality to help with re-calibration please see the information in the <a href="url">cali package</a></p>
 
 
 </section>

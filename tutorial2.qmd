@@ -95,17 +95,13 @@ prev_plot
 
 To find out more about how we estimate the seasonality parameters, have a look at the [documentation for the **umbrella** R package](Umbrella%20URL).
 
-We can also set up much more specific seasonal profiles that vary between years and mosquito species. 
-For more information on this, check out the [carrying capacity vignette](https://mrc-ide.github.io/malariasimulation/articles/Carrying-capacity.html).
+We can also set up much more specific seasonal profiles that vary between years and mosquito species. For more information on this, check out the [carrying capacity vignette](https://mrc-ide.github.io/malariasimulation/articles/Carrying-capacity.html).
 
 ### Changing the human population size
 
-We can change the modelled human population size with the `human_population` parameter. 
-If we increase the human population to 5000, we can see the impact on our prevalence plot -
-there is much less stochastic noise in the outcome.
+We can change the modelled human population size with the `human_population` parameter. If we increase the human population to 5000, we can see the impact on our prevalence plot - there is much less stochastic noise in the outcome.
 
-Note we need to re-set the `init_EIR` using the `set_equilibrium()` function after
-changing the human population, as the the human population infleucnes the equilibrium. 
+Note we need to re-set the `init_EIR` using the `set_equilibrium()` function after changing the human population, as the the human population infleucnes the equilibrium.
 
 ```{r}
 parameters$human_population <- 5000
@@ -138,39 +134,25 @@ prev_plot
 
 ### Changing demography
 
-The default demography in malaria simulation assumes a constant death rate and
-is parametrised using the `average_age` parameter. This leads to a exponentially
-distributed age-pyramid for the modelled population. More complex demographies,
-including those where death rates by age are not constant and, where the demography
-changes over time can be specified using the [`set_demography()`](https://mrc-ide.github.io/malariasimulation/articles/Demography.html#set-custom-demography) functionality
-in malariasimulation. 
+The default demography in malaria simulation assumes a constant death rate and is parametrised using the `average_age` parameter. This leads to a exponentially distributed age-pyramid for the modelled population. More complex demographies, including those where death rates by age are not constant and, where the demography changes over time can be specified using the [`set_demography()`](https://mrc-ide.github.io/malariasimulation/articles/Demography.html#set-custom-demography) functionality in malariasimulation.
 
 ### Changing the mosquito population
 
-The mosquito species present in the model run, and their behaviour are critically
-important to the resulting model dynamics and intevention impact. We need to capture
-these differnces as best we can as we know that in different places the number, 
-species and behaviour of mosquitoes will differ.
+The mosquito species present in the model run, and their behaviour are critically important to the resulting model dynamics and intevention impact. We need to capture these differnces as best we can as we know that in different places the number, species and behaviour of mosquitoes will differ.
 
-In malariasimulation we can make use of the powerful `set_species()` function
-to modify the number, type and behaviour of mosquito species in the model. Full
-details can be seen on the [mosquito species vignette](https://mrc-ide.github.io/malariasimulation/articles/SetSpecies.html).
+In malariasimulation we can make use of the powerful `set_species()` function to modify the number, type and behaviour of mosquito species in the model. Full details can be seen on the [mosquito species vignette](https://mrc-ide.github.io/malariasimulation/articles/SetSpecies.html).
 
 ------------------------------------------------------------------------
 
 ## Part 3 - tailoring model inputs to local contexts
 
-We now understand many of the important inputs that need to be tailored to run
-malariasimulation for a specific geography or context. These include:
+We now understand many of the important inputs that need to be tailored to run malariasimulation for a specific geography or context. These include:
 
-* Baseline transmission
-* Historical interventions
-* Seasonality
-# Population demography
-* Mosqito population characteristics
+-   Baseline transmission
+-   Historical interventions
+-   Seasonality 
+-   Population demography
+-   Mosqito population characteristics
 
-That’s quite a lot of information to gather! 
-If you already have access to this data—great!  
-If not, in part 3(URL), we will talk about the `site` package and explore how the
-country site-files it includes can serve as a useful starting point for
-context-specific modelling runs.
+That’s quite a lot of information to gather! If you already have access to this data—great!\
+If not, in part 3(URL), we will talk about the `site` package and explore how the country site-files it includes can serve as a useful starting point for context-specific modelling runs.
