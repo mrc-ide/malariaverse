@@ -5,9 +5,9 @@ engine: knitr
 
 ![](images/malariaverse_wide.png){fig-align="center" width="100%" height="100%"}
 
-<div style="text-align: center; font-size: 1.5em; font-weight: bold;">
-  **End-to-end malaria modelling, powered by data and research, serving national and global needs.**
-</div>
+::: {style="text-align: center; font-size: 1.5em; font-weight: bold;"}
+**End-to-end malaria modelling, powered by data and research, serving national and global needs.**
+:::
 
 ------------------------------------------------------------------------
 

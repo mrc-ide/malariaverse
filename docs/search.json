@@ -39,7 +39,7 @@
     "href": "tutorial1.html#part-2---context-matters",
     "title": "malariaverse",
     "section": "Part 2 - Context Matters 🦟🌧!",
-    "text": "Part 2 - Context Matters 🦟🌧!\nIn the next part of this tutorial, (part 2)[URL], we’ll be considering other important factors in addition to interventions that can impact malaria transmission. We’ll be learning how to capture differences in seasonality, mosquitoes, human demography and more!"
+    "text": "Part 2 - Context Matters 🦟🌧!\nIn the next part of this tutorial, (part 2)[https://mrc-ide.github.io/malariaverse/tutorial2.html], we’ll be considering other important factors in addition to interventions that can impact malaria transmission. We’ll be learning how to capture differences in seasonality, mosquitoes, human demography and more!"
   },
   {
     "objectID": "about.html",
@@ -88,6 +88,6 @@
     "href": "tutorial2.html#part-3---tailoring-model-inputs-to-local-contexts",
     "title": "malariaverse",
     "section": "Part 3 - tailoring model inputs to local contexts",
-    "text": "Part 3 - tailoring model inputs to local contexts\nWe now understand many of the important inputs that need to be tailored to run malariasimulation for a specific geography or context. These include:\n\nBaseline transmission\nHistorical interventions\nSeasonality\nPopulation demography\nMosqito population characteristics\n\nThat’s quite a lot of information to gather! If you already have access to this data—great!\nIf not, in part 3(URL), we will talk about the site package and explore how the country site-files it includes can serve as a useful starting point for context-specific modelling runs."
+    "text": "Part 3 - tailoring model inputs to local contexts\nWe now understand many of the important inputs that need to be tailored to run malariasimulation for a specific geography or context. These include:\n\nBaseline transmission\nHistorical interventions\nSeasonality\nPopulation demography\nMosqito population characteristics\n\nThat’s quite a lot of information to gather! If you already have access to this data—great!\nIf not, in part 3, we will talk about the site package and explore how the country site-files it includes can serve as a useful starting point for context-specific modelling runs."
   }
 ]

@@ -150,9 +150,9 @@ We now understand many of the important inputs that need to be tailored to run m
 
 -   Baseline transmission
 -   Historical interventions
--   Seasonality 
+-   Seasonality
 -   Population demography
 -   Mosqito population characteristics
 
 That’s quite a lot of information to gather! If you already have access to this data—great!\
-If not, in part 3(URL), we will talk about the `site` package and explore how the country site-files it includes can serve as a useful starting point for context-specific modelling runs.
+If not, in [part 3](https://mrc-ide.github.io/malariaverse/tutorial3.html), we will talk about the `site` package and explore how the country site-files it includes can serve as a useful starting point for context-specific modelling runs.

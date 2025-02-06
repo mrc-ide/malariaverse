@@ -275,4 +275,4 @@ Excellent, we can see that in this simulation bed nets are doing a really good j
 
 ## Part 2 - Context Matters 🦟🌧!
 
-In the next part of this tutorial, (part 2)\[URL\], we'll be considering other important factors in addition to interventions that can impact malaria transmission. We'll be learning how to capture differences in seasonality, mosquitoes, human demography and more!
+In the next part of this tutorial, (part 2)[https://mrc-ide.github.io/malariaverse/tutorial2.html], we'll be considering other important factors in addition to interventions that can impact malaria transmission. We'll be learning how to capture differences in seasonality, mosquitoes, human demography and more!
