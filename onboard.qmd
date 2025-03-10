@@ -1,0 +1,61 @@
+---
+title: ""
+engine: knitr
+---
+
+## 😊 Welcome!
+
+Welcome to our malaria modelling group! We're excited to have you on board and hope this page helps you get started with the resources, tools, and community that will support your journey.
+
+This page is here to help you settle in - diving into our model vignettes and published papers will give you the best foundation. Feel free to explore, and don’t hesitate to reach out with questions, a good place is the malaria group teams channel.
+
+### 📈 Model repositories
+
+-   [malariasimulation: the group’s individual based malaria transmission model](https://mrc-ide.github.io/malariasimulation/)
+
+-   [The group’s deterministic malaria transmission model](https://mrc-ide.github.io/deterministic-malaria-model/index)
+
+### 📃 Key Papers – Core model
+
+-   [Reducing Plasmodium falciparum Malaria Transmission in Africa: A Model-Based Evaluation of Intervention Strategies](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1000324)
+
+-   [Estimates of the changing age-burden of Plasmodium falciparum malaria disease in sub-Saharan Africa](https://www.nature.com/articles/ncomms4136)
+
+-   [Gradual acquisition of immunity to severe malaria with increasing exposure](https://royalsocietypublishing.org/doi/full/10.1098/rspb.2014.2657)
+
+-   [Potential for reduction of burden and local elimination of malaria by reducing Plasmodium falciparum malaria transmission: a mathematical modelling study](https://www.sciencedirect.com/science/article/pii/S1473309915004235)
+
+-   [The US President's Malaria Initiative, Plasmodium falciparum transmission and mortality: A modelling study](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002448)
+
+### 📃 Key Paper - Interventions
+
+-   [Modelling the Impact of Artemisinin Combination Therapy and Long-Acting Treatments on Malaria Transmission Intensity](https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0050226)
+
+-   [Modelling the impact of vector control interventions on Anopheles gambiae population dynamics](https://link.springer.com/article/10.1186/1756-3305-4-153)
+
+-   [Contrasting benefits of different artemisinin combination therapies as first-line malaria treatments using model-based cost-effectiveness analysis](https://www.nature.com/articles/ncomms6606)
+
+-   [Vaccine approaches to malaria control and elimination: Insights from mathematical models](https://www.sciencedirect.com/science/article/pii/S0264410X15013894)
+
+-   [Public health impact and cost-effectiveness of the RTS,S/AS01 malaria vaccine: a systematic comparison of predictions from four mathematical models](https://www.sciencedirect.com/science/article/pii/S0140673615007254)
+
+-   [Optimising the deployment of vector control tools against malaria: a data-informed modelling study](https://www.thelancet.com/journals/lanplh/article/PIIS2542-5196(21)00296-5/fulltext)
+
+-   [Inferring the epidemiological benefit of indoor vector control interventions against malaria from mosquito data](https://www.nature.com/articles/s41467-022-30700-1)
+
+-   [The public health impact and cost-effectiveness of the R21/Matrix-M malaria vaccine: a mathematical modelling study](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(23)00816-2/fulltext)
+
+-   [Modeling resource allocation strategies for insecticide-treated bed nets to achieve malaria eradication](https://elifesciences.org/articles/88283)
+
+-   [The potential of gene drives in malaria vector species to control malaria in African environments](https://www.nature.com/articles/s41467-024-53065-z)
+
+### 📖 Recommended Books
+
+-   Modeling Infectious Diseases in Humans and Animals, Keeling and Rohani
+-   Essential Malariology, Warrell and Gilles
+-   [R for data science, Wickham and Grolemund](https://r4ds.had.co.nz/)
+-   [Advanced R, Wickham](https://adv-r.hadley.nz/)
+-   [R packages, Wickham](https://r-pkgs.org/)
+-   A Student’s Guide to Bayesian Statistics, Ben Lambert.
+
+In the group and want to suggest additional resources? [Please raise a PR!](https://github.com/mrc-ide/malariaverse/pulls)

@@ -9,6 +9,8 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: onboard.qmd
+        text: New starters!
       - href: tutorial1.qmd
         text: Tutorial - part 1
       - href: tutorial2.qmd

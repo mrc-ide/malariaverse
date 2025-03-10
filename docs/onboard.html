@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>malariaverse</title>
+<title>onboard – malariaverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -92,11 +92,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./onboard.html"> 
+    <a class="nav-link active" href="./onboard.html" aria-current="page"> 
 <span class="menu-text">New starters!</span></a>
   </li>  
   <li class="nav-item">
@@ -126,8 +126,20 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">😊 Welcome!</a>
+  <ul class="collapse">
+  <li><a href="#model-repositories" id="toc-model-repositories" class="nav-link" data-scroll-target="#model-repositories">📈 Model repositories</a></li>
+  <li><a href="#key-papers-core-model" id="toc-key-papers-core-model" class="nav-link" data-scroll-target="#key-papers-core-model">📃 Key Papers – Core model</a></li>
+  <li><a href="#key-paper---interventions" id="toc-key-paper---interventions" class="nav-link" data-scroll-target="#key-paper---interventions">📃 Key Paper - Interventions</a></li>
+  <li><a href="#recommended-books" id="toc-recommended-books" class="nav-link" data-scroll-target="#recommended-books">📖 Recommended Books</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -135,169 +147,57 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/malariaverse_wide.png" class="quarto-figure quarto-figure-center figure-img" style="width:100.0%;height:100.0%"></p>
-</figure>
-</div>
-<div style="text-align: center; font-size: 1.5em; font-weight: bold;">
-<p><strong>End-to-end malaria modelling, powered by data and research, serving national and global needs.</strong></p>
-</div>
-<hr>
-<p>The malariaverse is a constellation of R packages to support the use of <a href="https://mrc-ide.github.io/malariasimulation/">malariasimulation</a> individual-based malaria transmission model for place specific modelling, for example modelling a specific region or country.</p>
-<p>The process often involves:</p>
-<ol type="1">
-<li>Collecting and processing data that are specific to the place.</li>
-<li>Using these data to parameterise <a href="https://mrc-ide.github.io/malariasimulation/">malariasimulation</a>.</li>
-<li>Processing raw model outputs.</li>
-<li>Optimisation.</li>
-</ol>
-<p>Each package targets a specific challenge of this broader process. Current packages in the malariaverse are shown below. Clicking on the package logo will take you to the package site, where you’ll find much more detailed information about what the package does and how to use it.</p>
-<hr>
-<div class="text-center">
-<p><img src="https://mrc-ide.github.io/malariasimulation/reference/figures/malariasimulation.png" class="img-fluid" style="width:25.0%"></p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/malariasimulation/actions"><img src="https://github.com/mrc-ide/malariasimulation/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" class="img-fluid" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-umbrella - fitting seasonality parameters from rainfall data</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/umbrella/actions"><img src="https://github.com/mrc-ide/umbrella/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" class="img-fluid" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
-</div>
-<div class="g-col-6">
-<div class="quarto-figure quarto-figure-right">
-<figure class="figure">
-<p><a href="https://mrc-ide.github.io/umbrella/"><img src="https://mrc-ide.github.io/umbrella/reference/figures/Umbrella.png" class="img-fluid quarto-figure quarto-figure-right figure-img" style="width:50.0%"></a></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><a href="https://mrc-ide.github.io/netz/"><img src="https://mrc-ide.github.io/netz/reference/figures/Netz.png" class="img-fluid" style="width:50.0%"></a></p>
-</div>
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-netz - managing net metrics and distributions</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/netz/actions"><img src="https://github.com/mrc-ide/netz/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" class="img-fluid" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-peeps - population demography</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/peeps/actions"><img src="https://github.com/mrc-ide/peeps/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#wip"><img src="https://www.repostatus.org/badges/latest/wip.svg" class="img-fluid" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public."></a></p>
-</div>
-<div class="g-col-6">
-<div class="quarto-figure quarto-figure-right">
-<figure class="figure">
-<p><a href="https://mrc-ide.github.io/peeps/"><img src="https://mrc-ide.github.io/peeps/reference/figures/Peeps.png" class="img-fluid quarto-figure quarto-figure-right figure-img" style="width:50.0%"></a></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><a href="https://mrc-ide.github.io/site/"><img src="https://mrc-ide.github.io/site/reference/figures/Site.png" class="img-fluid" style="width:50.0%"></a></p>
-</div>
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-site - country and sub-national site information and conversion to malariasimulation parameters</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/site/actions"><img src="https://github.com/mrc-ide/site/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" class="img-fluid" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-cali - calibrating model transmission</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/cali/actions"><img src="https://github.com/mrc-ide/cali/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" class="img-fluid" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
-</div>
-<div class="g-col-6">
-<div class="quarto-figure quarto-figure-right">
-<figure class="figure">
-<p><a href="https://mrc-ide.github.io/cali/"><img src="https://mrc-ide.github.io/cali/reference/figures/Cali.png" class="img-fluid quarto-figure quarto-figure-right figure-img" style="width:50.0%"></a></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><a href="https://mrc-ide.github.io/scene/"><img src="https://mrc-ide.github.io/scene/reference/figures/Scene.png" class="img-fluid" style="width:50.0%"></a></p>
-</div>
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-scene - future scenario builder</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/scene/actions"><img src="https://github.com/mrc-ide/scene/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#wip"><img src="https://www.repostatus.org/badges/latest/wip.svg" class="img-fluid" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public."></a></p>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-postie - post-processing of malariasimulation outputs</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/postie/actions"><img src="https://github.com/mrc-ide/postie/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#wip"><img src="https://www.repostatus.org/badges/latest/wip.svg" class="img-fluid" alt="Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public."></a></p>
-</div>
-<div class="g-col-6">
-<div class="quarto-figure quarto-figure-right">
-<figure class="figure">
-<p><a href="https://mrc-ide.github.io/postie/"><img src="https://mrc-ide.github.io/postie/reference/figures/Postie.png" class="img-fluid quarto-figure quarto-figure-right figure-img" style="width:50.0%"></a></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><a href="https://mrc-ide.github.io/om/"><img src="https://mrc-ide.github.io/om/reference/figures/Om.png" class="img-fluid" style="width:50.0%"></a></p>
-</div>
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-om - intervention stratification optimisation with complex budgets</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/om/actions"><img src="https://github.com/mrc-ide/om/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" class="img-fluid" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
-</div>
-</div>
-<hr>
-<div class="grid">
-<div class="g-col-6">
-<p><br>
-<br>
-<br>
-treasure - a repository for costing data</p>
-<p><img src="https://img.shields.io/badge/Access-Open-success.png" class="img-fluid"> <a href="https://github.com/mrc-ide/treasure/actions"><img src="https://github.com/mrc-ide/treasure/workflows/R-CMD-check/badge.svg" class="img-fluid" alt="R build status"></a> <a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" class="img-fluid" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></p>
-</div>
-<div class="g-col-6">
-<div class="quarto-figure quarto-figure-right">
-<figure class="figure">
-<p><a href="https://mrc-ide.github.io/treasure/"><img src="https://mrc-ide.github.io/treasure/reference/figures/Treasure.png" class="img-fluid quarto-figure quarto-figure-right figure-img" style="width:50.0%"></a></p>
-</figure>
-</div>
-</div>
-</div>
-<hr>
+<section id="welcome" class="level2">
+<h2 class="anchored" data-anchor-id="welcome">😊 Welcome!</h2>
+<p>Welcome to our malaria modelling group! We’re excited to have you on board and hope this page helps you get started with the resources, tools, and community that will support your journey.</p>
+<p>This page is here to help you settle in - diving into our model vignettes and published papers will give you the best foundation. Feel free to explore, and don’t hesitate to reach out with questions, a good place is the malaria group teams channel.</p>
+<section id="model-repositories" class="level3">
+<h3 class="anchored" data-anchor-id="model-repositories">📈 Model repositories</h3>
+<ul>
+<li><p><a href="https://mrc-ide.github.io/malariasimulation/">malariasimulation: the group’s individual based malaria transmission model</a></p></li>
+<li><p><a href="https://mrc-ide.github.io/deterministic-malaria-model/index">The group’s deterministic malaria transmission model</a></p></li>
+</ul>
+</section>
+<section id="key-papers-core-model" class="level3">
+<h3 class="anchored" data-anchor-id="key-papers-core-model">📃 Key Papers – Core model</h3>
+<ul>
+<li><p><a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1000324">Reducing Plasmodium falciparum Malaria Transmission in Africa: A Model-Based Evaluation of Intervention Strategies</a></p></li>
+<li><p><a href="https://www.nature.com/articles/ncomms4136">Estimates of the changing age-burden of Plasmodium falciparum malaria disease in sub-Saharan Africa</a></p></li>
+<li><p><a href="https://royalsocietypublishing.org/doi/full/10.1098/rspb.2014.2657">Gradual acquisition of immunity to severe malaria with increasing exposure</a></p></li>
+<li><p><a href="https://www.sciencedirect.com/science/article/pii/S1473309915004235">Potential for reduction of burden and local elimination of malaria by reducing Plasmodium falciparum malaria transmission: a mathematical modelling study</a></p></li>
+<li><p><a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002448">The US President’s Malaria Initiative, Plasmodium falciparum transmission and mortality: A modelling study</a></p></li>
+</ul>
+</section>
+<section id="key-paper---interventions" class="level3">
+<h3 class="anchored" data-anchor-id="key-paper---interventions">📃 Key Paper - Interventions</h3>
+<ul>
+<li><p><a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0050226">Modelling the Impact of Artemisinin Combination Therapy and Long-Acting Treatments on Malaria Transmission Intensity</a></p></li>
+<li><p><a href="https://link.springer.com/article/10.1186/1756-3305-4-153">Modelling the impact of vector control interventions on Anopheles gambiae population dynamics</a></p></li>
+<li><p><a href="https://www.nature.com/articles/ncomms6606">Contrasting benefits of different artemisinin combination therapies as first-line malaria treatments using model-based cost-effectiveness analysis</a></p></li>
+<li><p><a href="https://www.sciencedirect.com/science/article/pii/S0264410X15013894">Vaccine approaches to malaria control and elimination: Insights from mathematical models</a></p></li>
+<li><p><a href="https://www.sciencedirect.com/science/article/pii/S0140673615007254">Public health impact and cost-effectiveness of the RTS,S/AS01 malaria vaccine: a systematic comparison of predictions from four mathematical models</a></p></li>
+<li><p><a href="https://www.thelancet.com/journals/lanplh/article/PIIS2542-5196(21)00296-5/fulltext">Optimising the deployment of vector control tools against malaria: a data-informed modelling study</a></p></li>
+<li><p><a href="https://www.nature.com/articles/s41467-022-30700-1">Inferring the epidemiological benefit of indoor vector control interventions against malaria from mosquito data</a></p></li>
+<li><p><a href="https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(23)00816-2/fulltext">The public health impact and cost-effectiveness of the R21/Matrix-M malaria vaccine: a mathematical modelling study</a></p></li>
+<li><p><a href="https://elifesciences.org/articles/88283">Modeling resource allocation strategies for insecticide-treated bed nets to achieve malaria eradication</a></p></li>
+<li><p><a href="https://www.nature.com/articles/s41467-024-53065-z">The potential of gene drives in malaria vector species to control malaria in African environments</a></p></li>
+</ul>
+</section>
+<section id="recommended-books" class="level3">
+<h3 class="anchored" data-anchor-id="recommended-books">📖 Recommended Books</h3>
+<ul>
+<li>Modeling Infectious Diseases in Humans and Animals, Keeling and Rohani</li>
+<li>Essential Malariology, Warrell and Gilles</li>
+<li><a href="https://r4ds.had.co.nz/">R for data science, Wickham and Grolemund</a></li>
+<li><a href="https://adv-r.hadley.nz/">Advanced R, Wickham</a></li>
+<li><a href="https://r-pkgs.org/">R packages, Wickham</a></li>
+<li>A Student’s Guide to Bayesian Statistics, Ben Lambert.</li>
+</ul>
+<p>In the group and want to suggest additional resources? <a href="https://github.com/mrc-ide/malariaverse/pulls">Please raise a PR!</a></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
